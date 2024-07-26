@@ -15,7 +15,15 @@ Below are the lists of tasks to do for the frontend and the backend respectively
 
 - [ ] Food ordering page
     - Should be able to browse restaurants and their menus
-    - Should be able to select items from the restaurant's menu
+    - Should be able to select items from the restaurant's menu and add to cart
+
+- [ ] Order History Page
+    - Should be able to view details from previous orders (order contents, total price, etc)
+
+- [ ] Checkout Page
+    - Should be able to modify items currently in a user's cart (ie. delete unwanted ones)
+    - Should be able to view subtotal
+    - Should be able to "checkout" / confirm an order
 
 ### Backend
 
