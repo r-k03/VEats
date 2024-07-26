@@ -37,3 +37,15 @@ Below are the lists of tasks to do for the frontend and the backend respectively
 - [ ] Working connection to database
     - Backend should be able to communicate with the UBC Oracle servers to insert and fetch data
 
+## Sample LoFi Wireframes
+### Homepage
+![](images/Homepage.png)
+
+## Restaurant Menu
+![](images/Restaurant%20Menu.png)
+
+## Order History
+![](images/Orders.png)
+
+## Cart
+![](images/Cart.png)
