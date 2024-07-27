@@ -1,0 +1,15 @@
+{
+  "name": "vancouver eats",
+  "version": "1.0.0",
+  "description": "CPSC 304 project",
+  "main": "server.js",
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "oracledb": "^5.2.0"
+  },
+  "scripts": {
+    "start": "node server.js"
+  }
+}
