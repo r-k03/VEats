@@ -49,3 +49,6 @@ Below are the lists of tasks to do for the frontend and the backend respectively
 
 ## Cart
 ![](images/Cart.png)
+
+## Login
+![](images/Login.png)
