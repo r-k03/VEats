@@ -34,7 +34,7 @@ Below are the lists of tasks to do for the frontend and the backend respectively
         - User accounts (creating users, authorizing users)
         - Orders (creating orders, fetching orders)
 
-- [ ] Working connection to database - ~4 hours Jack
+- [ ] Working connection to database - ~4 hours - Jack
     - Backend should be able to communicate with the UBC Oracle servers to insert and fetch data
 
 ## Sample LoFi Wireframes
