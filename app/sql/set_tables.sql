@@ -25,7 +25,7 @@ CREATE TABLE Customer (
 	CustomerID		VARCHAR(12) PRIMARY KEY,
 	CustomerName	VARCHAR(50),
 	CustomerAddress	VARCHAR(50) NOT NULL,
-	CustomerPhoneNum	CHAR(12)
+	CustomerPhoneNum	VARCHAR(12)
 );
 
 CREATE TABLE HasDietaryPreference (
@@ -77,7 +77,7 @@ CREATE TABLE Restaurant (
 	RestaurantAddress	VARCHAR(50) PRIMARY KEY,
 	RestaurantName	    VARCHAR(50) ,
 	RestaurantRating	FLOAT,
-	RestaurantPhoneNum	CHAR(10) UNIQUE,
+	RestaurantPhoneNum	VARCHAR(12) UNIQUE,
     FOREIGN KEY (RestaurantName) REFERENCES 
         RestaurantCuisine(RestaurantName) 
         ON DELETE CASCADE
