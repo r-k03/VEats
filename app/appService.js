@@ -69,15 +69,19 @@ async function withOracleDB(action) {
  * SQL QUERY FUNCTIONS HERE
  */
 
-
-
-
-
+async function fetchRestaurants() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT * FROM Restaurant');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
 
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
-
+    fetchRestaurants
 };
