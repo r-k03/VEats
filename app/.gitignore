@@ -7,6 +7,9 @@ node_modules/
 # dotenv environment variable files
 .env
 
+# local start set up files
+local-start.sh
+
 # IDEs and editors
 .vscode/
 .idea/
