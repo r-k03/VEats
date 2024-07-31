@@ -13,13 +13,11 @@ router.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));
 });
 
-router.get('/menu', (req, res) => {
+router.get('/menu/:phone_number', (req, res) => {
+    const restaurantNumber = req.params.phone_number;
+    // console.log(restaurantNumber);
+    // const menuTableContent = await appService.fetchRestaurantNames();
     res.sendFile(path.join(__dirname, 'public', 'menu.html'));
-});
-
-router.get('/demotable', async (req, res) => {
-    const tableContent = await appService.fetchRestaurants();
-    res.json({data: tableContent});
 });
 
 router.get('/restaurantNames', async (req, res) => {

@@ -80,7 +80,16 @@ async function fetchRestaurants() {
 
 async function fetchRestaurantNames() {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT RestaurantName, RestaurantRating, RestaurantPhoneNum FROM Restaurant');
+        const result = await connection.execute('SELECT * FROM Restaurant');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+async function fetchMenu() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT * FROM Menu');
         return result.rows;
     }).catch(() => {
         return [];

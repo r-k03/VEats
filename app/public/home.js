@@ -41,16 +41,10 @@ async function fetchAndDisplayRestaurantNames() {
     }
 
     // Add list items
-    restaurants.forEach(restaurant => {
-        // const li = document.createElement('li');
-        // const a = document.createElement('a');
-
-        // li.textContent = `${restaurant[0]} ⭐️: ${restaurant[1]}`; 
-        // listElement.appendChild(li);
-        
+    restaurants.forEach(restaurant => {        
         const a = document.createElement('a');
-        a.href = `/menu`;
-        a.textContent = `${restaurant[0]} ⭐️: ${(restaurant[1]).toFixed(1)}`;
+        a.href = `/menu/${restaurant[0]}`; // use restuarant phone number to get unique menu page
+        a.textContent = `${restaurant[1]} ⭐️: ${(restaurant[2]).toFixed(1)}`;
 
         const li = document.createElement('li');
         li.appendChild(a);
@@ -60,9 +54,7 @@ async function fetchAndDisplayRestaurantNames() {
 }
 
 window.onload = function() {
-    fetchTableData();
     fetchAndDisplayRestaurantNames();
-
 }
 
 
