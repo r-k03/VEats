@@ -23,9 +23,48 @@ async function fetchAndDisplayUsers() {
     });
 }
 
+async function fetchAndDisplayRestaurantNames() {
+    const listElement = document.getElementById('restaurant_list');
+
+    const response = await fetch('/restaurantNames', {
+        method: 'GET'
+    });
+
+    const responseData = await response.json();
+    const restaurants = responseData.data;
+
+    console.log(restaurants);
+
+    // Clear old data
+    if (listElement) {
+        listElement.innerHTML = '';
+    }
+
+    // Add list items
+    restaurants.forEach(restaurant => {
+        // const li = document.createElement('li');
+        // const a = document.createElement('a');
+
+        // li.textContent = `${restaurant[0]} ⭐️: ${restaurant[1]}`; 
+        // listElement.appendChild(li);
+        
+        const a = document.createElement('a');
+        a.href = `/menu`;
+        a.textContent = `${restaurant[0]} ⭐️: ${(restaurant[1]).toFixed(1)}`;
+
+        const li = document.createElement('li');
+        li.appendChild(a);
+        listElement.appendChild(li);
+    });
+
+}
+
 window.onload = function() {
     fetchTableData();
+    fetchAndDisplayRestaurantNames();
+
 }
+
 
 function fetchTableData() {
     fetchAndDisplayUsers();

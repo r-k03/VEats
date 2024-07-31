@@ -78,10 +78,20 @@ async function fetchRestaurants() {
     });
 }
 
+async function fetchRestaurantNames() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT RestaurantName, RestaurantRating, RestaurantPhoneNum FROM Restaurant');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
-    fetchRestaurants
+    fetchRestaurants,
+    fetchRestaurantNames
 };
