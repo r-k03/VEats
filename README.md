@@ -3,7 +3,7 @@ Below are the lists of tasks to do for the frontend and the backend respectively
 ## Tasks List
 
 ### General
-- [ ] Set up base project - to be done ASAP, ~1 hour - Jack
+- [x] Set up base project - to be done ASAP, ~1 hour - Jack
     - Should have basic web application end-to-end structure
     - Should have a running server and viewable frontend upon starting application
 
