@@ -21,7 +21,7 @@ async function login() {
 
     if (response.ok) {
         sessionStorage.setItem("customerID", id);
-        window.location.href = "main.html";
+        window.location.href = "home.html";
     } else {
         alert("User not found OR failed to match");
     }

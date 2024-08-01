@@ -111,5 +111,6 @@ async function fetchMenu() {
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
+    findUser,
     fetchRestaurantNames
 };
