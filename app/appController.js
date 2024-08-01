@@ -2,12 +2,22 @@ const express = require('express');
 const appService = require('./appService');
 
 const router = express.Router();
+// router.use(express.json());
+// router.use(express.raw({type: "application/*", limit: "10mb"}));
 const path = require('path');
 /**
  * API ENDPOINTS HERE
  */
 
-router.use(express.static(path.join(__dirname, 'public')));
+router.post('/login', async (req, res) => {
+    const {id, phone} = req.body 
+    const result = await appService.findUser(id, phone);
+    if (result > 0) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(401);
+    }
+});router.use(express.static(path.join(__dirname, 'public')));
 
 router.get('/home', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'home.html'));

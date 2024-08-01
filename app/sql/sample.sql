@@ -1,49 +1,49 @@
 -- Insert statements for Customer table
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('1', 'Esther Murty', '1234 Granville Street', '604-132-2523');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('2', 'Melvin Cottis', '5678 Burrard Street', '778-233-4961');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('3', 'Raff Aspinell', '4321 Main Street', '604-632-8177');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('4', 'Sadye Tutsell', '8765 Cambie Street', '604-991-2784');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('5', 'Jonah Essberger', '9101 Oak Street', '604-377-0667');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('6', 'Terese Musselwhite', '3456 West 4th Avenue', '778-828-8315');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('7', 'Nanice Spinola', '7890 Kingsway', '604-214-1623');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('8', 'Janey Bernucci', '6543 Commercial Drive', '778-488-5825');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('9', 'Karee Garter', '3210 Fraser Street', '778-263-5321');
-INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('10', 'Gillan Heinzler', '9876 Broadway', '604-699-8676');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('1', 'Esther Murty', '1234 Granville Street', '6041322523');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('2', 'Melvin Cottis', '5678 Burrard Street', '7782334961');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('3', 'Raff Aspinell', '4321 Main Street', '6046328177');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('4', 'Sadye Tutsell', '8765 Cambie Street', '6049912784');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('5', 'Jonah Essberger', '9101 Oak Street', '6043770667');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('6', 'Terese Musselwhite', '3456 West 4th Avenue', '7788288315');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('7', 'Nanice Spinola', '7890 Kingsway', '6042141623');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('8', 'Janey Bernucci', '6543 Commercial Drive', '7784885825');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('9', 'Karee Garter', '3210 Fraser Street', '7782635321');
+INSERT INTO Customer(CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) VALUES ('10', 'Gillan Heinzler', '9876 Broadway', '6046998676');
 
 -- Insert statements for DeliveryPerson table
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('81685719', 'Hildagarde Scothorne', 0.78, '604-220-0356');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('01983055', 'Whitman Goburn', 0.60, '778-704-3887');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('78276122', 'Kayley Massey', 0.86, '604-621-7985');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('85681253', 'Sky McElhargy', 0.83, '778-279-7384');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('29795860', 'Tansy Jakeman', 0.65, '604-916-1407');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('09571867', 'Germayne Shillabeer', 0.74, '778-226-0243');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('99220121', 'Merwin Bartley', 0.86, '604-977-0612');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('69154261', 'Perrine Griffitt', 0.92, '778-547-8319');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('83174286', 'Ciel Bahl', 0.94, '604-130-0961');
-INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('72761716', 'Teddie Townsend', 0.73, '778-434-3030');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('81685719', 'Hildagarde Scothorne', 0.78, '6042200356');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('01983055', 'Whitman Goburn', 0.60, '7787043887');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('78276122', 'Kayley Massey', 0.86, '6046217985');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('85681253', 'Sky McElhargy', 0.83, '7782797384');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('29795860', 'Tansy Jakeman', 0.65, '6049161407');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('09571867', 'Germayne Shillabeer', 0.74, '7782260243');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('99220121', 'Merwin Bartley', 0.86, '6049770612');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('69154261', 'Perrine Griffitt', 0.92, '7785478319');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('83174286', 'Ciel Bahl', 0.94, '6041300961');
+INSERT INTO DeliveryPerson (LicenseNum, DeliveryPersonName, DeliveryPersonRating, PhoneNum) VALUES ('72761716', 'Teddie Townsend', 0.73, '7784343030');
 
 -- Insert statements for Vehicle table
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('LAD-201', TO_DATE('2024-12-31', 'YYYY-MM-DD'), 'Toyota', 'Camry', 'Blue');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('A42-LO2', TO_DATE('2024-11-30', 'YYYY-MM-DD'), 'Honda', 'Civic', 'Red');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('K6G-2F5', TO_DATE('2024-10-15', 'YYYY-MM-DD'), 'Ford', 'Escape', 'Silver');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('FGB-343', TO_DATE('2024-09-20', 'YYYY-MM-DD'), 'Chevrolet', 'Malibu', 'Black');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('H3B-L35', TO_DATE('2024-08-10', 'YYYY-MM-DD'), 'Nissan', 'Altima', 'White');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('423-JKW', TO_DATE('2024-07-05', 'YYYY-MM-DD'), 'Hyundai', 'Elantra', 'Gray');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('B9D-23L', TO_DATE('2024-06-15', 'YYYY-MM-DD'), 'Volkswagen', 'Jetta', 'Green');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('DD5-41E', TO_DATE('2024-05-25', 'YYYY-MM-DD'), 'Subaru', 'Outback', 'Brown');
-INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('LE4-41A', TO_DATE('2024-03-12', 'YYYY-MM-DD'), 'Mazda', 'CX-5', 'Orange');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('LAD201', TO_DATE('2024-12-31', 'YYYY-MM-DD'), 'Toyota', 'Camry', 'Blue');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('A42LO2', TO_DATE('2024-11-30', 'YYYY-MM-DD'), 'Honda', 'Civic', 'Red');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('K6G2F5', TO_DATE('2024-10-15', 'YYYY-MM-DD'), 'Ford', 'Escape', 'Silver');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('FGB343', TO_DATE('2024-09-20', 'YYYY-MM-DD'), 'Chevrolet', 'Malibu', 'Black');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('H3BL35', TO_DATE('2024-08-10', 'YYYY-MM-DD'), 'Nissan', 'Altima', 'White');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('423JKW', TO_DATE('2024-07-05', 'YYYY-MM-DD'), 'Hyundai', 'Elantra', 'Gray');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('B9D23L', TO_DATE('2024-06-15', 'YYYY-MM-DD'), 'Volkswagen', 'Jetta', 'Green');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('DD541E', TO_DATE('2024-05-25', 'YYYY-MM-DD'), 'Subaru', 'Outback', 'Brown');
+INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('LE441A', TO_DATE('2024-03-12', 'YYYY-MM-DD'), 'Mazda', 'CX-5', 'Orange');
 INSERT INTO Vehicle (LicensePlateNum, InsuranceExpiryDate, Brand, VehicleModel, VehicleColour) VALUES ('SIGMA', TO_DATE('2024-09-12', 'YYYY-MM-DD'), 'Tesla', 'Model 3', 'White');
 
 -- Insert statements for OwnsVehicle table
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('81685719', 'LAD-201');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('01983055', 'A42-LO2');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('78276122', 'K6G-2F5');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('85681253', 'FGB-343');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('29795860', 'H3B-L35');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('09571867', '423-JKW');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('99220121', 'B9D-23L');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('69154261', 'DD5-41E');
-INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('83174286', 'LE4-41A');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('81685719', 'LAD201');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('01983055', 'A42LO2');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('78276122', 'K6G2F5');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('85681253', 'FGB343');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('29795860', 'H3BL35');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('09571867', '423JKW');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('99220121', 'B9D23L');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('69154261', 'DD541E');
+INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('83174286', 'LE441A');
 INSERT INTO OwnsVehicle (LicenseNum, LicensePlateNum) VALUES ('72761716', 'SIGMA');
 
 -- Insert statements for RestaurantCuisine table
@@ -59,16 +59,16 @@ INSERT INTO RestaurantCuisine (RestaurantName, RestaurantCuisineType) VALUES ('G
 INSERT INTO RestaurantCuisine (RestaurantName, RestaurantCuisineType) VALUES ('Indian Spice', 'Indian');
 
 -- Insert statements for Restaurant table
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('123 Main St', 'Tasty Bites', 4.5, '555-1234');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('456 Elm Ave', 'Spice Haven', 4.2, '555-5678');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('789 Oak Rd', 'Sushi Delight', 4.8, '555-9876');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('101 Maple Ln', 'Pizza Paradise', 4.0, '555-4321');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('222 Cherry Blvd', 'Burger Joint', 3.7, '555-2468');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('333 Pine Dr', 'Mexican Fiesta', 4.3, '555-1357');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('444 Walnut Ct', 'Café Bliss', 4.6, '555-6789');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('555 Cedar Ave', 'Thai Orchid', 4.4, '555-7890');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('666 Birch St', 'Greek Taverna', 4.1, '555-5432');
-INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('777 Willow Rd', 'Indian Spice', 4.7, '555-8765');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('123 Main St', 'Tasty Bites', 4.5, '5551234');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('456 Elm Ave', 'Spice Haven', 4.2, '5555678');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('789 Oak Rd', 'Sushi Delight', 4.8, '5559876');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('101 Maple Ln', 'Pizza Paradise', 4.0, '5554321');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('222 Cherry Blvd', 'Burger Joint', 3.7, '5552468');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('333 Pine Dr', 'Mexican Fiesta', 4.3, '5551357');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('444 Walnut Ct', 'Café Bliss', 4.6, '5556789');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('555 Cedar Ave', 'Thai Orchid', 4.4, '5557890');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('666 Birch St', 'Greek Taverna', 4.1, '5555432');
+INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('777 Willow Rd', 'Indian Spice', 4.7, '5558765');
 
 -- Insert statements for Orders table
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('1', TO_DATE('2024-07-15', 'YYYY-MM-DD'), '8', '81685719', '123 Main St');

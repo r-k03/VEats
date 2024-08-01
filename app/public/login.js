@@ -1,12 +1,28 @@
-window.onload = function() {
-    sessionStorage.setItem("customerID", "");
-};
+async function login() {
+    const id = document.getElementById("loginID").value;
+    const phone = document.getElementById("loginPhone").value;
 
-function login() {
-    // communicate with backend and verify it exists
-    // else alert fail
-}
+    if (!id || !phone) {
+        alert("Invalid entry");
+        return;
+    }
 
-function getCustomerID() {
-    return sessionStorage.getItem("customerID");
+    
+    const response = await fetch('/login', {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            id: id,
+            phone: phone
+        })
+    });
+
+    if (response.ok) {
+        sessionStorage.setItem("customerID", id);
+        window.location.href = "main.html";
+    } else {
+        alert("User not found OR failed to match");
+    }
 }

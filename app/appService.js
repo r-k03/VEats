@@ -69,7 +69,17 @@ async function withOracleDB(action) {
  * SQL QUERY FUNCTIONS HERE
  */
 
-async function fetchRestaurants() {
+async function findUser(id, phone) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(
+            `SELECT * FROM Customer WHERE CustomerID = :id AND CustomerPhoneNum = :phone`,
+            [id, phone]
+        );
+        return result.rows.length;
+    }).catch(() => {
+        return false;
+    });
+}async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
         return result.rows;
@@ -101,6 +111,5 @@ async function fetchMenu() {
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
-    fetchRestaurants,
-    fetchRestaurantNames
+
 };
