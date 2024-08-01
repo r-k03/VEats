@@ -79,15 +79,37 @@ async function findUser(id, phone) {
     }).catch(() => {
         return false;
     });
+}async function fetchRestaurants() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT * FROM Restaurant');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
 }
 
+async function fetchRestaurantNames() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT * FROM Restaurant');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
-
+async function fetchMenu() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT * FROM Menu');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
 
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
-    findUser,
+    fetchRestaurantNames
 };
