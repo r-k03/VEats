@@ -35,6 +35,11 @@ router.get('/restaurantNames', async (req, res) => {
     res.json({data: tableContent});
 });
 
+router.get('/orders/:cID', async (req, res) => {
+    const customerID = req.params.cID;
+
+})
+
 
 
 
