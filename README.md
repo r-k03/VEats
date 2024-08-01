@@ -1,6 +1,11 @@
-Below are the lists of tasks to do for the frontend and the backend respectively. The timeline will follow the top-down flow of the list under each of the respective subheaders with each task to be completed with an estimated time and subsequently followed by another:
+## Introduction
+Our database application relates to the food and online delivery industry, specifically the management between customers, delivery drivers, and restaurants. This application intends to manage data of customers (e.g. food preferences/allergies and residing location), delivery drivers (e.g. working time and locations), and restaurants (e.g. food items and its ingredients). The emphasis is not on the retail/sales of food, but rather organizing the collection of data from the “end users” (i.e. the three mentioned above) of the industry.
+
+For reasons in maintaining simplicity to account for the short summer course time, we have decided to keep our app local to Vancouver. Behold, Vancouver Eats!
 
 ## Tasks List
+Below are the lists of tasks to do for the frontend and the backend respectively. The timeline will follow the top-down flow of the list under each of the respective subheaders with each task to be completed with an estimated time and subsequently followed by another:
+
 
 ### General
 - [x] Set up base project - to be done ASAP, ~1 hour - Jack
