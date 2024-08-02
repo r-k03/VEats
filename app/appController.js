@@ -12,10 +12,20 @@ const path = require('path');
 router.post('/login', async (req, res) => {
     const {id, phone} = req.body 
     const result = await appService.findUser(id, phone);
-    if (result > 0) {
+    if (result.length > 0) {
         res.sendStatus(200);
     } else {
         res.sendStatus(401);
+    }
+});
+
+router.post('/register', async (req, res) => {
+    const {id, phone, addr} = req.body 
+    const result = await appService.registerUser(id, phone, addr);
+    if (result) {
+        res.sendStatus(201);
+    } else {
+        res.sendStatus(409);
     }
 });
 
@@ -47,11 +57,16 @@ router.get('/orders/:cID', async (req, res) => {
     const customerID = req.params.cID;
     const orderContent = await appService.fetchOrders(customerID);
     const totalContent = await appService.fetchOrderTotals(customerID);
-    res.json({data: orderContent},{totals:totalContent});
+    res.status(200).json({data: orderContent, totals: totalContent});
 });
 
-
-
+router.get('/orders/:cID/:fVal', async (req, res) => {
+    const customerID = req.params.cID;
+    const filterVal = req.params.fVal;
+    const orderContent = await appService.fetchOrders(customerID);
+    const filteredTotals = await
+    res.json({data: orderContent},{totals:filteredTotals});
+});
 
 
 module.exports = router;
