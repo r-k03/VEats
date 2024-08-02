@@ -374,3 +374,70 @@ INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VA
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('6', 'Clams', 'Allergy');
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('6', 'Butter', 'Allergy');
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('7', 'Chicken Breast', 'Allergy');
+
+-- Insert statements for Menu tables
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Breakfast Specials', '123 Main St', 'Breakfast');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Lunch Combos', '123 Main St', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Dinner Feasts', '123 Main St', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Spicy Platters', '456 Elm Ave', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Evening Delight', '456 Elm Ave', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Lunch Specials', '789 Oak Rd', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Dinner Deals', '789 Oak Rd', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('2 for $10', '101 Maple Ln', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Desserts', '101 Maple Ln', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Burgers', '222 Cherry Blvd', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Milkshakes', '222 Cherry Blvd', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Fiesta Lunch', '333 Pine Dr', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Fiesta Dinners', '333 Pine Dr', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Breakfast Specials', '444 Walnut Ct', 'Breakfast');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Lunch Specials', '444 Walnut Ct', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Dinner Specials', '444 Walnut Ct', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Lunch Combos', '555 Cedar Ave', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Thai Dinner', '555 Cedar Ave', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Greek Lunch', '666 Birch St', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Happy Hour', '666 Birch St', 'Dinner');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Lunch Specials', '777 Willow Rd', 'Lunch');
+
+INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
+VALUES ('Dinner Feasts', '777 Willow Rd', 'Dinner');

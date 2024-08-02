@@ -123,7 +123,20 @@ async function fetchRestaurantNames() {
 
 async function fetchMenus(restaurantAddress) {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT * FROM Menu'); // change me
+        const result = await connection.execute(`
+            SELECT * 
+            FROM Menu m, Restaurant r, MenuFeaturesItem mf 
+            WHERE r.RestaurantAddress = :restaurantAddress 
+                AND r.RestaurantAddress = m.restaurantaddress 
+                AND mf.MenuName = m.MenuName`, 
+            [restaurantAddress]);
+        /* 
+        'SELECT * 
+        FROM Menu m, Restaurant r, MenuFeaturesItem mf
+        WHERE r.RestaurantAddress = :restaurantAddress 
+            AND r.RestaurantAddress = m.restaurantaddress 
+            AND mf.MenuName = m.MenuName', [restaurantAddress]
+        */
         return result.rows;
     }).catch(() => {
         return [];
