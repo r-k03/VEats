@@ -75,11 +75,35 @@ async function findUser(id, phone) {
             `SELECT * FROM Customer WHERE CustomerID = :id AND CustomerPhoneNum = :phone`,
             [id, phone]
         );
-        return result.rows.length;
+        return result.rows;
     }).catch(() => {
         return false;
     });
-}async function fetchRestaurants() {
+}
+
+async function registerUser(id, phone, addr) {
+    return await withOracleDB(async (connection) => {
+        const existingUsers = await connection.execute(
+            `SELECT * FROM Customer WHERE CustomerID = :id`, [id]
+        );
+        if (existingUsers.rows.length > 0) {
+            return false;
+        }
+
+        const result = await connection.execute(
+            `INSERT INTO Customer (CustomerID, CustomerName, CustomerAddress, CustomerPhoneNum) 
+                VALUES (:id, NULL, :addr, :phone)`,
+            [id, addr, phone],
+            { autoCommit: true }
+        );
+        return result.rowsAffected && result.rowsAffected > 0;
+
+    }).catch(() => {
+        return false;
+    });
+}
+
+async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
         return result.rows;
@@ -108,7 +132,12 @@ async function fetchMenu() {
 
 async function fetchOrders(cID) {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute(`Select o.OrderID, o.OrderDate, r.RestaurantName, oc.MenuItemName FROM Orders o, Restaurant r, OrderContains oc WHERE o.CustomerID=:cID AND o.RestaurantAddress = r.RestaurantAddress AND o.OrderID = oc.OrderID`,
+        const result = await connection.execute(`
+            Select o.OrderID, o.OrderDate, r.RestaurantName, oc.MenuItemName 
+            FROM Orders o, Restaurant r, OrderContains oc 
+            WHERE o.CustomerID=:cID 
+                AND o.RestaurantAddress = r.RestaurantAddress 
+                AND o.OrderID = oc.OrderID`,
         [cID]);
         return result.rows;
     }).catch(() => {
@@ -118,8 +147,18 @@ async function fetchOrders(cID) {
 
 async function fetchOrderTotals(cID) {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute(`Select o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi WHERE o.CustomerID=:cID AND o.RestaurantAddress = r.RestaurantAddress AND o.OrderID = oc.OrderID AND r.RestaurantAddress = m.RestaurantAddress AND m.MenuName = mfi.MenuName AND oc.MenuItemName = mfi.MenuItemName GROUP BY o.OrderID`,
+        const result = await connection.execute(`
+            Select o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice 
+            FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi 
+            WHERE o.CustomerID=:cID 
+                AND o.RestaurantAddress = r.RestaurantAddress 
+                AND o.OrderID = oc.OrderID 
+                AND r.RestaurantAddress = m.RestaurantAddress 
+                AND m.MenuName = mfi.MenuName 
+                AND oc.MenuItemName = mfi.MenuItemName 
+            GROUP BY o.OrderID`,
         [cID]);
+        console.log(result);
         return result.rows;
     }).catch(() => {
         return [];
@@ -131,6 +170,7 @@ async function fetchOrderTotals(cID) {
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
     findUser,
+    registerUser,
     fetchRestaurantNames,
     fetchOrders,
     fetchOrderTotals

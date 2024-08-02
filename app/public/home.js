@@ -64,7 +64,6 @@ window.onload = function() {
     fetchAndDisplayRestaurantNames();
 }
 
-
 function fetchTableData() {
     fetchAndDisplayUsers();
 }
