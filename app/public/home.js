@@ -43,7 +43,8 @@ async function fetchAndDisplayRestaurantNames() {
     // Add list items
     restaurants.forEach(restaurant => {        
         const a = document.createElement('a');
-        a.href = `/menu/${restaurant[0]}`; // use restuarant phone number to get unique menu page
+        a.href = `menu.html`; // use restuarant addr to get unique menu page
+        a.onclick = () => setCurrRestaurant(restaurant[0]);
         a.textContent = `${restaurant[1]} ⭐️: ${(restaurant[2]).toFixed(1)}`;
 
         const li = document.createElement('li');
@@ -53,7 +54,13 @@ async function fetchAndDisplayRestaurantNames() {
 
 }
 
+function setCurrRestaurant(restaurantAddr) {
+    sessionStorage.setItem('currentRestaurant', restaurantAddr);
+}
+
 window.onload = function() {
+    // for debugging/ or catch error
+    if (!sessionStorage.getItem('customerID')) alert("Warning: not logged in/no customerID");
     fetchAndDisplayRestaurantNames();
 }
 
