@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order History</title>
-</head>
-<body>
-<h1 style="text-align:center">Your Order History</h1>
-<form id="filterForm">
-    <label for="oval">Orders Greater Than:</label>
-    <input type="text" id="oval" inputmode="numeric" pattern="^[1-9]{1}\d*$" maxlength="4" placeholder="1234" required/>
-    <input type="submit"/>
-</form>
-<div id="oList"></div>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Order History</title>
+    </head>
+    <body>
+        <h1 style="text-align:center">Your Order History</h1>
+        <form id="filterForm">
+            <label for="oval">Orders Greater Than:</label>
+            <input type="text" id="oval" inputmode="numeric" pattern="^[1-9]{1}\d*$" maxlength="4" placeholder="1234" required/>
+            <input type="submit"/>
+        </form>
+        <div id="oList"></div>
+    </body>
+    <script src="orderHistory.js"></script>
+    <link href="styles.css" rel="stylesheet" />
 </html>

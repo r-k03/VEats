@@ -25,7 +25,7 @@ CREATE TABLE Customer (
 	CustomerID		VARCHAR(12) PRIMARY KEY,
 	CustomerName	VARCHAR(50),
 	CustomerAddress	VARCHAR(50) NOT NULL,
-	CustomerPhoneNum	VARCHAR(12)
+	CustomerPhoneNum	VARCHAR(12) NOT NULL
 );
 
 CREATE TABLE HasDietaryPreference (

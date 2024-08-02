@@ -1,14 +1,29 @@
-<html>
-    <header>
-
-    </header>
+<html lang="en">
+    <head>
+        <title>Vancouver Eats</title>
+    </head>
     <body>
-        <div>HELLO</div>
+        <h1>Vancouver Eats</h1>
+        <br/>   
+        <a href="home.html">TEMPORARY to home</a>
+        <br/>
+        <br/>
+        <div id="loginDiv">
         <input placeholder="User ID" id="loginID">
         <input placeholder="Phone Number" id="loginPhone">
-        <button onclick="login()">login</button>
-        </br>     
-        <a href="home.html">TEMPORARY to home</a>
+        <button onclick="login()">Login</button>
+        </div>
+        <br/>     
+        <a href="#" onclick="toggleRegister()">Sign up</a>
+        <br/>
+        <div id="registerDiv" style="display:none">
+            Join Vancouver Eats for free!
+            <br/>
+            <input placeholder="User ID" id="registerID">
+            <input placeholder="Phone Number" id="registerPhone">
+            <input placeholder="Address" id="registerAddr">
+            <button onclick="register()">Register</button>
+        </div>
         <script src="login.js"></script>
     </body>
 
