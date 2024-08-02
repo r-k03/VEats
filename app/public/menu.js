@@ -1,3 +1,6 @@
+let cart = [];
+let subtotal = 0;
+
 async function fetchAndDisplayMenu(restaurantAddress) {
     const menu_container = document.getElementById('menu_container');
     
@@ -19,7 +22,7 @@ async function fetchAndDisplayMenu(restaurantAddress) {
         const div = document.createElement('div');
         div.classList.add("menuItem");
         
-        div.onclick = (event) => addToCart(event); // add an event listener to process menu item click
+        div.onclick = () => addToCart(item[7]); // add an event listener to process menu item click
         div.textContent = `${item[7]} $: ${item[10]} ⊕`; // change div content to include item name and price
 
         menu_container.appendChild(div);
@@ -27,11 +30,38 @@ async function fetchAndDisplayMenu(restaurantAddress) {
     
 }
 
-function addToCart(event) {
-    console.log(event);
+function addToCart(item) {
     let add = confirm("Add this item to cart?");
     if (add) {
-        alert("Added to cart");
+        if (cart.includes(item)) {
+            alert("Item already in cart!");
+            return;
+        } else {
+            cart.push(item);
+            alert(`Added ${item} to cart`);
+            displayCart(); // 
+        }
+    }
+    console.log(cart); // for debugging
+}
+
+function displayCart() {
+    if (cart.length != 0) {
+        const cartContainer = document.getElementById("cart_container");
+
+        if (cartContainer) {
+            cartContainer.innerHTML = '';
+        }
+
+        cartContainer.innerHTML = '<h1>Cart</h1>'
+
+        cart.forEach(item => {        
+            const div = document.createElement('div');
+            
+            div.textContent = `${item}`; // change div content to include item name and price
+    
+            cartContainer.appendChild(div);
+        });
     }
 }
 
