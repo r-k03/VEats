@@ -63,6 +63,8 @@ function displayCart() {
             cartContainer.appendChild(div);
         });
 
+        cartContainer.innerHTML += '<button class = "checkoutButton"> CHECKOUT </button>'
+
 }
 
 function removeFromCart(item) {

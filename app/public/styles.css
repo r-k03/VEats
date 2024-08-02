@@ -105,3 +105,8 @@ ul {
     padding: 0; /* Remove padding */
     margin: 0; /* Remove margins */
 }
+
+.checkoutButton {
+    background-color: orange;
+    margin-top: 35px;
+}
