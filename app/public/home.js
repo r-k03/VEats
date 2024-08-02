@@ -64,7 +64,7 @@ window.onload = function() {
     fetchAndDisplayRestaurantNames();
 }
 
-
+// delete
 function fetchTableData() {
     fetchAndDisplayUsers();
 }

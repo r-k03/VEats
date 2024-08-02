@@ -99,9 +99,9 @@ async function fetchRestaurantNames() {
     });
 }
 
-async function fetchMenu() {
+async function fetchMenus(restaurantAddress) {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT * FROM Menu');
+        const result = await connection.execute('SELECT * FROM Menu'); // change me
         return result.rows;
     }).catch(() => {
         return [];
@@ -134,6 +134,7 @@ async function fetchOrderTotals(cID) {
 module.exports = {
     findUser,
     fetchRestaurantNames,
+    fetchMenus,
     fetchOrders,
     fetchOrderTotals
 };

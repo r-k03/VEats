@@ -37,6 +37,12 @@ router.get('/restaurantNames', async (req, res) => {
     res.json({data: tableContent});
 });
 
+router.get('/menus/:address', async (req, res) => {
+    const restaurantAddress = req.params.address;
+    const tableContent = await appService.fetchMenus(restaurantAddress);
+    res.json({data: tableContent});
+});
+
 router.get('/orders/:cID', async (req, res) => {
     const customerID = req.params.cID;
     const orderContent = await appService.fetchOrders(customerID);
