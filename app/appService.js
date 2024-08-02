@@ -79,7 +79,9 @@ async function findUser(id, phone) {
     }).catch(() => {
         return false;
     });
-}async function fetchRestaurants() {
+}
+
+async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
         return result.rows;
