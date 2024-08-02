@@ -7,6 +7,11 @@
 </head>
 <body>
 <h1 style="text-align:center">Your Order History</h1>
+<form id="filterForm">
+    <label for="oval">Orders Greater Than:</label>
+    <input type="text" id="oval" inputmode="numeric" pattern="^[1-9]{1}\d*$" maxlength="4" placeholder="1234" required/>
+    <input type="submit"/>
+</form>
 <div id="oList"></div>
 </body>
 </html>

@@ -44,6 +44,14 @@ router.get('/orders/:cID', async (req, res) => {
     res.json({data: orderContent},{totals:totalContent});
 });
 
+router.get('/orders/:cID/:fVal', async (req, res) => {
+    const customerID = req.params.cID;
+    const filterVal = req.params.fVal;
+    const orderContent = await appService.fetchOrders(customerID);
+    const filteredTotals = await
+    res.json({data: orderContent},{totals:filteredTotals});
+});
+
 
 
 

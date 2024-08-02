@@ -126,6 +126,16 @@ async function fetchOrderTotals(cID) {
     });
 }
 
+async function filteredOrderTotals(cID, fVal) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`Select o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi WHERE o.CustomerID=:cID AND o.RestaurantAddress = r.RestaurantAddress AND o.OrderID = oc.OrderID AND r.RestaurantAddress = m.RestaurantAddress AND m.MenuName = mfi.MenuName AND oc.MenuItemName = mfi.MenuItemName GROUP BY o.OrderID HAVING SUM(mfi.ItemPrice)>=:fVal`,
+        [cID,fVal]);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
@@ -133,5 +143,6 @@ module.exports = {
     findUser,
     fetchRestaurantNames,
     fetchOrders,
-    fetchOrderTotals
+    fetchOrderTotals,
+    filteredOrderTotals
 };
