@@ -106,11 +106,32 @@ async function fetchMenu() {
     });
 }
 
+async function fetchOrders(cID) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`Select o.OrderID, o.OrderDate, r.RestaurantName, oc.MenuItemName FROM Orders o, Restaurant r, OrderContains oc WHERE o.CustomerID=:cID AND o.RestaurantAddress = r.RestaurantAddress AND o.OrderID = oc.OrderID`,
+        [cID]);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+async function fetchOrderTotals(cID) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`Select o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi WHERE o.CustomerID=:cID AND o.RestaurantAddress = r.RestaurantAddress AND o.OrderID = oc.OrderID AND r.RestaurantAddress = m.RestaurantAddress AND m.MenuName = mfi.MenuName AND oc.MenuItemName = mfi.MenuItemName GROUP BY o.OrderID`,
+        [cID]);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
 
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
 module.exports = {
     findUser,
-    fetchRestaurantNames
+    fetchRestaurantNames,
+    fetchOrders,
+    fetchOrderTotals
 };

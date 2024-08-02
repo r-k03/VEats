@@ -38,7 +38,13 @@ async function fetchAndDisplayOrders() {
         return acc;
     },{});
 
-    let count = 0;
+    const groupedTotals = totals.reduce((acc, curr) => {
+        const oID = curr[0];
+        if (acc[oID]) {alert("problem");}
+        acc[oID] = curr[1];
+        return acc
+    },{});
+
     for (const order of Object.keys(groupedOrders)) {
         if (groupedOrders[order].length > 0) {
         let firstItem = groupedOrders[order][0];
@@ -48,8 +54,7 @@ async function fetchAndDisplayOrders() {
         groupedOrders[order].forEach(o => {
             html += '<p>' + o[3] + '</p>';
         });
-        html += `<p> Total: ${totals[count][1]}</p></div>`;
-        count += 1;
+        html += `<p> Total: ${groupedTotals[order]}</p></div>`;
         }
     }
     orderDisplayElement.innerHTML = html;
