@@ -93,7 +93,11 @@ input::placeholder, textarea::placeholder {
 }
 
 .menuItem:hover {
-    background-color:red;
+    background-color:green;
+}
+
+.cartItem:hover {
+    background-color: red;
 }
 
 ul {

@@ -46,7 +46,6 @@ function addToCart(item) {
 }
 
 function displayCart() {
-    if (cart.length != 0) {
         const cartContainer = document.getElementById("cart_container");
 
         if (cartContainer) {
@@ -57,11 +56,21 @@ function displayCart() {
 
         cart.forEach(item => {        
             const div = document.createElement('div');
-            
-            div.textContent = `${item}`; // change div content to include item name and price
-    
+            div.classList.add("cartItem");
+            div.textContent = `${item}`; // change div content to include item name and price?
+            div.onclick = () => removeFromCart(item);
+
             cartContainer.appendChild(div);
         });
+
+}
+
+function removeFromCart(item) {
+    const remove = confirm(`Remove ${item} from cart?`);
+    if (remove) {
+        const indexToRemove = cart.indexOf(item);
+        cart.splice(indexToRemove, 1);
+        displayCart();
     }
 }
 
