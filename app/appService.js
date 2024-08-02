@@ -121,6 +121,7 @@ async function fetchRestaurantNames() {
     });
 }
 
+// note: doesn't filter out food by customer preference yet
 async function fetchMenus(restaurantAddress) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(`
