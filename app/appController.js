@@ -39,8 +39,10 @@ router.get('/restaurantNames', async (req, res) => {
 
 router.get('/orders/:cID', async (req, res) => {
     const customerID = req.params.cID;
-
-})
+    const orderContent = await appService.fetchOrders(customerID);
+    const totalContent = await appService.fetchOrderTotals(customerID);
+    res.json({data: orderContent},{totals:totalContent});
+});
 
 
 
