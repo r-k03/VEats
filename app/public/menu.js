@@ -57,13 +57,16 @@ function displayCart() {
         cart.forEach(item => {        
             const div = document.createElement('div');
             div.classList.add("cartItem");
-            div.textContent = `${item}`; // change div content to include item name and price?
+            div.textContent = `${item} ⊖`; // change div content to include item name and price?
             div.onclick = () => removeFromCart(item);
 
             cartContainer.appendChild(div);
         });
-
-        cartContainer.innerHTML += '<button class = "checkoutButton"> CHECKOUT </button>'
+        
+        const checkoutArea = document.getElementById("checkout_area");
+        checkoutArea.innerHTML = `
+            <button class = "checkoutButton"> CHECKOUT </button>
+            `;
 
 }
 
