@@ -70,7 +70,7 @@ router.get('/orders/:cID/:fVal', async (req, res) => {
     const customerID = req.params.cID;
     const filterVal = req.params.fVal;
     const orderContent = await appService.fetchOrders(customerID);
-    const filteredTotals = await
+    const filteredTotals = await appService.filteredOrderTotals(customerID,filterVal);
     res.json({data: orderContent},{totals:filteredTotals});
 });
 
