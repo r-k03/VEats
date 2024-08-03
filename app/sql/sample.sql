@@ -370,6 +370,7 @@ INSERT INTO ItemMadeWith (MenuItemName, IngredientName) VALUES ('Turkey Sandwich
 
 -- Insert statements for HasDietaryPreference table
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('2', 'Peanuts', 'Allergy');
+INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('2', 'Mushrooms', 'Allergy');
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('5', 'Salmon', 'Allergy');
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('6', 'Clams', 'Allergy');
 INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType) VALUES ('6', 'Butter', 'Allergy');

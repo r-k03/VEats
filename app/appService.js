@@ -103,6 +103,19 @@ async function registerUser(id, phone, addr) {
     });
 }
 
+async function fetchUserPrefs(customerID) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            SELECT IngredientName, PreferenceType
+            FROM HasDietaryPreference
+            WHERE CustomerID = :customerID
+            `, [customerID]);
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
@@ -196,6 +209,7 @@ async function filteredOrderTotals(cID, fVal) {
 module.exports = {
     findUser,
     registerUser,
+    fetchUserPrefs,
     fetchRestaurantNames,
     fetchMenus,
     fetchOrders,

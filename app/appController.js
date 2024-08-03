@@ -42,6 +42,12 @@ router.post('/register', async (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'menu.html'));
 // });
 
+router.get('/:customerID/dietarypref', async (req, res) => {
+    const customerID = req.params.customerID;
+    const prefs = await appService.fetchUserPrefs(customerID);
+    res.json({data: prefs});
+});
+
 router.get('/restaurantNames', async (req, res) => {
     const tableContent = await appService.fetchRestaurantNames();
     res.json({data: tableContent});
