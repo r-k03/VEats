@@ -26,8 +26,8 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
         div.classList.add("menuItem");
         
         div.onclick = () => addToCart(item[7]); // add an event listener to process menu item click
-        div.textContent = `${item[7]} $: ${item[10]} ⊕`; // change div content to include item name and price
-
+        // div.textContent = `${item[0]} -- ${item[7]} $: ${item[10]} ⊕`; 
+        div.innerHTML = `<span>${item[0]} -- ${item[7]}</span><span>$: ${item[10]} ⊕</span>`;
         menu_container.appendChild(div);
     });
     

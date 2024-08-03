@@ -129,7 +129,8 @@ async function fetchMenus(restaurantAddress) {
             FROM Menu m, Restaurant r, MenuFeaturesItem mf 
             WHERE r.RestaurantAddress = :restaurantAddress 
                 AND r.RestaurantAddress = m.restaurantaddress 
-                AND mf.MenuName = m.MenuName`, 
+                AND mf.MenuName = m.MenuName
+            ORDER BY m.MenuName`, 
             [restaurantAddress]);
         /* 
         'SELECT * 

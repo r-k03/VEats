@@ -92,6 +92,11 @@ input::placeholder, textarea::placeholder {
     padding:15px;
 }
 
+.menuItem {
+    display: flex;
+    justify-content: space-between;
+}
+
 .menuItem:hover {
     background-color:green;
     cursor: pointer;
