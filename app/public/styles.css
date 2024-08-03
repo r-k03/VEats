@@ -129,3 +129,8 @@ li {
 li a {
     text-decoration: none;
 }
+
+#checkout_area {
+    display: flex;
+    justify-content: end;
+}
