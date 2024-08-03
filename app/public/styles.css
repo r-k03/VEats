@@ -95,16 +95,25 @@ input::placeholder, textarea::placeholder {
 .menuItem {
     display: flex;
     justify-content: space-between;
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 .menuItem:hover {
+    color: white;
     background-color:green;
     cursor: pointer;
 }
 
 .cartItem:hover {
+    color: white;
     background-color: red;
     cursor: pointer;
+}
+
+.cartItem {
+    border-radius: 5px;
+    padding: 5px 10px;
 }
 
 ul {
@@ -133,4 +142,9 @@ li a {
 #checkout_area {
     display: flex;
     justify-content: end;
+}
+
+header {
+    display: flex;
+    
 }
