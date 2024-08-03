@@ -44,7 +44,7 @@ async function fetchAndDisplayRestaurantNames() {
     restaurants.forEach(restaurant => {        
         const a = document.createElement('a');
         a.href = `menu.html`; // use restuarant addr to get unique menu page
-        a.onclick = () => setCurrRestaurant(restaurant[0]);
+        a.onclick = () => setCurrRestaurant(restaurant[0], restaurant[1]);
         a.textContent = `${restaurant[1]} ⭐️: ${(restaurant[2]).toFixed(1)}`;
 
         const li = document.createElement('li');
@@ -54,8 +54,9 @@ async function fetchAndDisplayRestaurantNames() {
 
 }
 
-function setCurrRestaurant(restaurantAddr) {
+function setCurrRestaurant(restaurantAddr, restaurantName) {
     sessionStorage.setItem('currentRestaurant', restaurantAddr);
+    sessionStorage.setItem('restaurantName', restaurantName)
 }
 
 window.onload = function() {

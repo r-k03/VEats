@@ -1,7 +1,10 @@
 let cart = [];
 let subtotal = 0;
 
-async function fetchAndDisplayMenu(restaurantAddress) {
+async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
+    const restaurantTitle = document.getElementById('restaurant');
+    restaurantTitle.textContent = `${restaurantName} - ${restaurantAddress}`;
+
     const menu_container = document.getElementById('menu_container');
     
     const url = `/menus/${restaurantAddress}`;
@@ -52,7 +55,7 @@ function displayCart() {
             cartContainer.innerHTML = '';
         }
 
-        cartContainer.innerHTML = '<h1>Cart</h1>'
+        cartContainer.innerHTML = '<h2>Cart</h2>'
 
         cart.forEach(item => {        
             const div = document.createElement('div');
@@ -63,6 +66,7 @@ function displayCart() {
             cartContainer.appendChild(div);
         });
         
+        // add checkout button to screen
         const checkoutArea = document.getElementById("checkout_area");
         checkoutArea.innerHTML = `
             <button class = "checkoutButton"> CHECKOUT </button>
@@ -75,11 +79,11 @@ function removeFromCart(item) {
     if (remove) {
         const indexToRemove = cart.indexOf(item);
         cart.splice(indexToRemove, 1);
-        displayCart();
+        displayCart(); // update cart on webpage
     }
 }
 
 window.onload = function() {
     // alert(sessionStorage.getItem('currentRestaurant'));
-    fetchAndDisplayMenu(sessionStorage.getItem('currentRestaurant'));
+    fetchAndDisplayMenu(sessionStorage.getItem('currentRestaurant'), sessionStorage.getItem('restaurantName'));
 }

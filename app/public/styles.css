@@ -94,10 +94,12 @@ input::placeholder, textarea::placeholder {
 
 .menuItem:hover {
     background-color:green;
+    cursor: pointer;
 }
 
 .cartItem:hover {
     background-color: red;
+    cursor: pointer;
 }
 
 ul {
@@ -106,7 +108,19 @@ ul {
     margin: 0; /* Remove margins */
 }
 
+li {
+    padding-bottom: 5px;
+}
+
 .checkoutButton {
     background-color: orange;
     margin-top: 35px;
+}
+
+.manage {
+    margin-top: 30px;
+}
+
+li a {
+    text-decoration: none;
 }
