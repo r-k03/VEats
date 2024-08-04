@@ -76,14 +76,16 @@ function displayCart() {
         Object.keys(cart).forEach(item => {        
             const div = document.createElement('div');
             div.classList.add("cartItem");
-            div.textContent = `⊖ ${item}`; // change div content to include item name and price?
-            div.onclick = () => removeFromCart(item);
-
+            // div.textContent = `⊖ ${item}`; // change div content to include item name and price?
+            div.innerHTML = `<span>⊖ ${item}</span><span>$${cart[item]}</span>`;
             cartContainer.appendChild(div);
+            div.onclick = () => removeFromCart(item);
+                cartContainer.appendChild(div);
         });
 
         const checkoutArea = document.getElementById("checkout_area");
         checkoutArea.innerHTML = `
+            <div>SUBTOTAL: $${subtotal}</div>
             <button class = "checkoutButton"> CHECKOUT </button>
             `;
 }
