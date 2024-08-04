@@ -442,3 +442,5 @@ VALUES ('Lunch Specials', '777 Willow Rd', 'Lunch');
 
 INSERT INTO Menu (MenuName, RestaurantAddress, MealType)
 VALUES ('Dinner Feasts', '777 Willow Rd', 'Dinner');
+
+COMMIT;

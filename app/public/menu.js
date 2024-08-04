@@ -6,6 +6,7 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     restaurantTitle.textContent = `${restaurantName} - ${restaurantAddress}`;
 
     const menu_container = document.getElementById('menu_container');
+    const checkout_container = document.getElementById('checkout_area');
     
     const url = `/menus/${restaurantAddress}`;
     const response = await fetch(url, {
@@ -29,6 +30,17 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
         div.innerHTML = `<span>⊕ ${item[0]} -- ${item[7]}</span><span>$${item[10]}</span>`;
         menu_container.appendChild(div);
     });
+
+    const pTotal = document.createElement('p');
+    pTotal.innerText = `Subtotal: ${subtotal}`;
+    checkout_container.appendChild(pTotal);
+
+    const checkoutButton = document.createElement('button');
+    checkoutButton.type = 'submit';
+    checkoutButton.classList.add('checkoutButton');
+    checkoutButton.textContent = 'Checkout';
+    checkout_container.appendChild(checkoutButton);
+    checkoutButton.addEventListener('submit', checkout);
     
 }
 
@@ -64,13 +76,6 @@ function displayCart() {
 
             cartContainer.appendChild(div);
         });
-        
-        // add checkout button to screen
-        const checkoutArea = document.getElementById("checkout_area");
-        checkoutArea.innerHTML = `
-            <button class = "checkoutButton"> CHECKOUT </button>
-            `;
-
 }
 
 function removeFromCart(item) {
@@ -80,6 +85,13 @@ function removeFromCart(item) {
         cart.splice(indexToRemove, 1);
         displayCart(); // update cart on webpage
     }
+}
+
+function checkout(event) {
+    event.preventDefault();
+
+
+
 }
 
 window.onload = function() {
