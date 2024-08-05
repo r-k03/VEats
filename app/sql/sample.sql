@@ -71,26 +71,26 @@ INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, Res
 INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, RestaurantPhoneNum) VALUES ('777 Willow Rd', 'Indian Spice', 4.7, '5558765');
 
 -- Insert statements for Orders table
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('1', TO_DATE('2024-07-15', 'YYYY-MM-DD'), '8', '81685719', '123 Main St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('2', TO_DATE('2024-07-16', 'YYYY-MM-DD'), '4', '01983055', '456 Elm Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('3', TO_DATE('2024-07-17', 'YYYY-MM-DD'), '7', '78276122', '789 Oak Rd');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('4', TO_DATE('2024-07-18', 'YYYY-MM-DD'), '5', '85681253', '101 Maple Ln');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('5', TO_DATE('2024-07-19', 'YYYY-MM-DD'), '6', '29795860', '222 Cherry Blvd');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('6', TO_DATE('2024-07-20', 'YYYY-MM-DD'), '9', '09571867', '333 Pine Dr');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('7', TO_DATE('2024-07-21', 'YYYY-MM-DD'), '1', '99220121', '444 Walnut Ct');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('8', TO_DATE('2024-07-22', 'YYYY-MM-DD'), '6', '69154261', '555 Cedar Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('9', TO_DATE('2024-07-23', 'YYYY-MM-DD'), '1', '83174286', '666 Birch St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('10', TO_DATE('2024-07-24', 'YYYY-MM-DD'), '4', '72761716', '777 Willow Rd');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('11', TO_DATE('2024-07-25', 'YYYY-MM-DD'), '9', '81685719', '123 Main St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('12', TO_DATE('2024-07-26', 'YYYY-MM-DD'), '6', '01983055', '456 Elm Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('13', TO_DATE('2024-07-27', 'YYYY-MM-DD'), '9', '78276122', '789 Oak Rd');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('14', TO_DATE('2024-07-28', 'YYYY-MM-DD'), '7', '85681253', '101 Maple Ln');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('15', TO_DATE('2024-07-29', 'YYYY-MM-DD'), '8', '29795860', '222 Cherry Blvd');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('16', TO_DATE('2024-07-30', 'YYYY-MM-DD'), '2', '09571867', '333 Pine Dr');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('17', TO_DATE('2024-07-31', 'YYYY-MM-DD'), '7', '99220121', '444 Walnut Ct');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('18', TO_DATE('2024-08-01', 'YYYY-MM-DD'), '9', '69154261', '555 Cedar Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('19', TO_DATE('2024-08-02', 'YYYY-MM-DD'), '8', '83174286', '666 Birch St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES ('20', TO_DATE('2024-08-03', 'YYYY-MM-DD'), '2', '72761716', '777 Willow Rd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (1, TO_DATE('2024-07-15', 'YYYY-MM-DD'), '8', '81685719', '123 Main St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (2, TO_DATE('2024-07-16', 'YYYY-MM-DD'), '4', '01983055', '456 Elm Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (3, TO_DATE('2024-07-17', 'YYYY-MM-DD'), '7', '78276122', '789 Oak Rd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (4, TO_DATE('2024-07-18', 'YYYY-MM-DD'), '5', '85681253', '101 Maple Ln');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (5, TO_DATE('2024-07-19', 'YYYY-MM-DD'), '6', '29795860', '222 Cherry Blvd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (6, TO_DATE('2024-07-20', 'YYYY-MM-DD'), '9', '09571867', '333 Pine Dr');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (7, TO_DATE('2024-07-21', 'YYYY-MM-DD'), '1', '99220121', '444 Walnut Ct');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (8, TO_DATE('2024-07-22', 'YYYY-MM-DD'), '6', '69154261', '555 Cedar Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (9, TO_DATE('2024-07-23', 'YYYY-MM-DD'), '1', '83174286', '666 Birch St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (10, TO_DATE('2024-07-24', 'YYYY-MM-DD'), '4', '72761716', '777 Willow Rd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (11, TO_DATE('2024-07-25', 'YYYY-MM-DD'), '9', '81685719', '123 Main St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (12, TO_DATE('2024-07-26', 'YYYY-MM-DD'), '6', '01983055', '456 Elm Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (13, TO_DATE('2024-07-27', 'YYYY-MM-DD'), '9', '78276122', '789 Oak Rd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (14, TO_DATE('2024-07-28', 'YYYY-MM-DD'), '7', '85681253', '101 Maple Ln');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (15, TO_DATE('2024-07-29', 'YYYY-MM-DD'), '8', '29795860', '222 Cherry Blvd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (16, TO_DATE('2024-07-30', 'YYYY-MM-DD'), '2', '09571867', '333 Pine Dr');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (17, TO_DATE('2024-07-31', 'YYYY-MM-DD'), '7', '99220121', '444 Walnut Ct');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (18, TO_DATE('2024-08-01', 'YYYY-MM-DD'), '9', '69154261', '555 Cedar Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (19, TO_DATE('2024-08-02', 'YYYY-MM-DD'), '8', '83174286', '666 Birch St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (20, TO_DATE('2024-08-03', 'YYYY-MM-DD'), '2', '72761716', '777 Willow Rd');
 
 
 -- Insert statements for MenuItem table
