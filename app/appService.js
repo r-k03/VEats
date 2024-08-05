@@ -255,19 +255,19 @@ async function filteredOrderTotals(cID, fVal) {
 
 async function getMaxOrder() {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT OrderID FROM Orders');
-        return result.rows;
+        const result = await connection.execute('SELECT MAX(OrderID) FROM Orders');
+        return result.rows[0][0];
     }).catch(() => {
-        return [];
+        return false;
     });
 }
 
 async function getRandomDriver() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT LicenseNum FROM DeliveryPerson ORDER BY DBMS_RANDOM.VALUE');
-        return result.rows;
+        return result.rows[0][0];
     }).catch(() => {
-        return [];
+        return false;
     });
 }
 
@@ -275,7 +275,7 @@ async function insertOrder(oID,oDate,cID,lNum,rAdd) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(
         `INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress)
-            VALUES (:oID, :oDate, :cID, :lNum, :rAdd)`,
+            VALUES (:oID, TO_DATE(:oDate, 'YYYY-MM-DD'), :cID, :lNum, :rAdd)`,
             [oID, oDate, cID, lNum, rAdd],
             { autoCommit: true }
         );

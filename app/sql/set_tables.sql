@@ -85,7 +85,7 @@ CREATE TABLE Restaurant (
 );
 
 CREATE TABLE Orders (
-	OrderID 		VARCHAR(10) PRIMARY KEY,
+	OrderID 		INT PRIMARY KEY,
 	OrderDate		DATE,
 	CustomerID		VARCHAR(10),	
 	LicenseNum 		CHAR(8),
@@ -144,7 +144,7 @@ CREATE TABLE ItemMadeWith (
 );
 
 CREATE TABLE OrderContains (
-	OrderID		    VARCHAR(10),
+	OrderID		    INT,
 	MenuItemName	VARCHAR(50),
 	PRIMARY KEY 	(OrderID, MenuItemName),
 	FOREIGN KEY	(MenuItemName) REFERENCES

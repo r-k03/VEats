@@ -89,34 +89,58 @@ router.get('/restaurantNames', async (req, res) => {
     res.json({data: tableContent});
 });
 
-router.get('/menus/:address/:customerID', async (req, res) => {
+router.get('/menu/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
     const customerID = req.params.customerID;
     const tableContent = await appService.fetchMenus(restaurantAddress, customerID);
     res.json({data: tableContent});
 });
 
-router.get('/menus/ids', async (req, res) => {
-    const tableContent = await appService.getMaxOrder();
-    res.json({data: tableContent});
-});
+// router.get('/menus/randomDriver', async (req, res) => {
+//     console.log("0");
+//     const tableContent = await appService.getRandomDriver();
+//     res.json({data: tableContent});
+// });
 
-router.get('/menus/randomDriver', async (req, res) => {
-    const tableContent = await appService.getRandomDriver();
-    res.json({data: tableContent});
-});
+router.post('/insertOrder', async (req, res) => {
+    const { id, items, restaurant} = req.body;
 
-router.post('/menus/insertOrder', async (req, res) => {
-    const { id, date, cID, license, restaurantAddress} = req.body;
-    const result = await appService.insertOrder(id, date, cID, license, restaurantAddress);
+    // todo assign random license
+    const license = await appService.getRandomDriver();
+
+    const orderID = await appService.getMaxOrder() + 1;
+
+    const date = new Date().toJSON().slice(0,10);
+
+    const orderResult = await appService.insertOrder(orderID, date, id, license, restaurant);
+
+    if (!orderResult) {
+        res.sendStatus(500)
+        return;
+    }
+
+    let itemResult;
+
+    for (let item of Object.keys(items)) {
+        itemResult = await appService.insertItem(orderID, item);
+        if (!itemResult) {
+            // should handle better and delete all previous added item, shouldnt fail regardless
+            res.sendStatus(500);
+            return;
+        }
+    }
+
+    res.sendStatus(200);
+    return;
+    
     if (result) {
-        res.sendStatus(200);
+        res.send(200);
     } else {
-    res.sendStatus(409);
+        res.sendStatus(409);
     }
 });
 
-router.post('menus/insertItem', async (req, res) => {
+router.post('/menus/insertItem', async (req, res) => {
     const {id, item} = req.body;
     const result = await appService.insertItem(id, item);
     if (result) {

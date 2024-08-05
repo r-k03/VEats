@@ -13,7 +13,7 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     const menu_container = document.getElementById('menu_container');
     const checkout_container = document.getElementById('checkout_area');
     
-    const url = `/menus/${restaurantAddress}/${custID}`;
+    const url = `/menu/${restaurantAddress}/${custID}`;
     const response = await fetch(url, {
         method: 'GET'
     });
@@ -105,66 +105,82 @@ function removeFromCart(item) {
         alert("Cart Empty");
         return;
     }
-    const url = `/menus/ids`;
-    const response = await fetch(url, {
-        method: 'GET'
-    });
 
-    const responseData = await response.json();
-    const orderIDs = responseData.data;
-    let newID;
-    if (orderIDs.length <= 0) {newID = '1';}
-    else {
-        let ordersAsInt = orderIDs.map((curr) => parseInt(curr[0])).sort((a, b) => a - b);
-        newID = String(ordersAsInt[ordersAsInt.length - 1] + 1);
-    }
 
-    const response2 = await fetch('/menus/randomDriver', {
-        method: 'GET'
-    });
-
-    const response2Data = await response2.json();
-    const driverData = response2Data.data;
-    console.log(driverData);
-    if (driverData.length === 0) {alert("No Driver Can Be Assigned");return;}
-    const randDriver = driverData[0][0];
-
-    const currDate = new Date().toJSON().slice(0,10);
-
-    const response3 = await fetch('/menus/insertOrder', {
-        method: "POST",
+    const response = await fetch(`/insertOrder/`, {
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            id: newID,
-            date: currDate,
-            cID: sessionStorage.getItem("customerID"),
-            license: randDriver,
-            restaurantAddress: sessionStorage.getItem("currentRestaurant")
+            id: sessionStorage.getItem("customerID"),
+            items: cart,
+            restaurant: sessionStorage.getItem("currentRestaurant")
         })
-    });
+    })
 
-    if (!response3.ok) {
-        alert("Invalid Customer OR Invalid License OR Invalid Restaurant");
-        return;
+    if (response) {
+        alert("Order placed successfully!")
+    } else {
+        alert("Failed to place order, try again")
     }
-    for (const currItem of Object.keys(cart)) {
-        const response4 = await fetch('/menus/insertItem', {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-            id: newID,
-            item: currItem
-            })
-        });
-        if (!response4.ok) {alert("Order or Item Does Not Exist");return;}
-    }
+
     subtotal = 0;
     cart = {};
     displayCart();
+    return;
+
+    // const responseData = await response.json();
+    // const orderIDs = responseData.data;
+    // const newID = (orderIDs.length > 0) ? orderIDs[0][1] + 1 : 1;
+
+    // // assume it is not actually random driver
+    // const response2 = await fetch('/menus/randomDriver', {
+    //     method: 'GET'
+    // });
+
+    // const response2Data = await response2.json();
+    // const driverData = response2Data.data;
+    // console.log(driverData);
+    // if (driverData.length === 0) {alert("No Driver Can Be Assigned");return;}
+    // const randDriver = driverData[0][0];
+
+    // const currDate = new Date().toJSON().slice(0,10);
+
+    // const response3 = await fetch('/menus/insertOrder', {
+    //     method: "POST",
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         id: newID,
+    //         date: currDate,
+    //         cID: sessionStorage.getItem("customerID"),
+    //         license: randDriver,
+    //         restaurantAddress: sessionStorage.getItem("currentRestaurant")
+    //     })
+    // });
+
+    // if (!response3.ok) {
+    //     alert("Invalid Customer OR Invalid License OR Invalid Restaurant");
+    //     return;
+    // }
+    // for (const currItem of Object.keys(cart)) {
+    //     const response4 = await fetch('/menus/insertItem', {
+    //         method: "POST",
+    //         headers: {
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //         id: newID,
+    //         item: currItem
+    //         })
+    //     });
+    //     if (!response4.ok) {alert("Order or Item Does Not Exist");return;}
+    // }
+    // subtotal = 0;
+    // cart = {};
+    // displayCart();
 }
 
 window.onload = function() {
