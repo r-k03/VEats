@@ -258,7 +258,7 @@ async function getMaxOrder() {
 
 async function getRandomDriver() {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT LicenseNum FROM (SELECT LicenseNum FROM DeliveryPerson ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM=1');
+        const result = await connection.execute('SELECT LicenseNum FROM DeliveryPerson ORDER BY DBMS_RANDOM.VALUE');
         return result.rows;
     }).catch(() => {
         return [];

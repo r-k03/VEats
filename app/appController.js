@@ -100,7 +100,7 @@ router.get('/menus/ids', async (req, res) => {
     res.json({data: tableContent});
 });
 
-router.get('/menus/randDriver', async (req, res) => {
+router.get('/menus/randomDriver', async (req, res) => {
     const tableContent = await appService.getRandomDriver();
     res.json({data: tableContent});
 });
