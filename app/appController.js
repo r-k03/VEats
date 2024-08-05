@@ -9,8 +9,8 @@ const path = require('path');
  * API ENDPOINTS HERE
  */
 
-router.post('/login', async (req, res) => {
-    const {id, phone} = req.body;
+router.post('/loginUser', async (req, res) => {
+    const {id, phone} = req.body 
     const result = await appService.findUser(id, phone);
     if (result.length > 0) {
         res.sendStatus(200);
@@ -19,14 +19,26 @@ router.post('/login', async (req, res) => {
     }
 });
 
-router.post('/register', async (req, res) => {
-    const {id, phone, addr} = req.body;
+router.post('/registerUser', async (req, res) => {
+    const {id, phone, addr} = req.body 
     const result = await appService.registerUser(id, phone, addr);
     if (result) {
         res.sendStatus(201);
     } else {
         res.sendStatus(409);
     }
+});
+
+router.delete('/deleteUser/:customerID', async (req, res) => {
+
+    const customerID = req.params.customerID;
+    const result = await appService.deleteUser(customerID);
+    if (result) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(404);
+    }
+
 });
 
 // router.use(express.static(path.join(__dirname, 'public')));
@@ -42,10 +54,34 @@ router.post('/register', async (req, res) => {
 //     res.sendFile(path.join(__dirname, 'public', 'menu.html'));
 // });
 
-router.get('/:customerID/dietarypref', async (req, res) => {
+router.get('/dietarypref/:customerID', async (req, res) => {
     const customerID = req.params.customerID;
     const prefs = await appService.fetchUserPrefs(customerID);
     res.json({data: prefs});
+});
+
+router.post('/dietarypref/:customerID', async (req, res) => {
+    const customerID = req.params.customerID;
+    const {ingred, pref} = req.body
+    const result = await appService.createUserPref(customerID, ingred, pref);
+
+    if (result) {
+        res.sendStatus(201);
+    } else {
+        res.sendStatus(409);
+    }
+});
+
+router.put('/dietarypref/:customerID', async (req, res) => {
+    const customerID = req.params.customerID;
+    const {ingred, pref} = req.body
+    const result = await appService.updateUserPref(customerID, ingred, pref);
+
+    if (result) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(400);
+    }
 });
 
 router.get('/restaurantNames', async (req, res) => {

@@ -7,13 +7,22 @@
         <div id="accountWelcome">Oops! You're not logged in</div>
         <br/>
         <a href="#" onclick="toggleDietary()" id="toggleDietary">Edit dietary preferences</a>
-        <ul id="dietaryPrefs" style="display:none">
-
+        <div id="dietaryPrefsDiv" style="display:none">
+            <input id="newIngred" placeholder="Ingredient"> 
+            <!-- to be replaced with another dropdown with all ingredients -->
+            <select id="newPref">
+                <option value="" disabled selected>Select preference type</option>
+                <option value="Allergy">Allergy</option>
+                <option value="Favourite">Favourite</option>
+            </select>
+            <button id="submitNewPref" onclick="submitNewPref()">Create new preference</button>
+            <ul id="dietaryPrefsList">
+        </div>
         </ul>
         <br/>
         <a href="orderHistory.html">View order history</a>
         <br/>
-        <a href="#" onclick="deleteAccount()">Delete account</a>
+        <a href="#" onclick="deleteUser()">Delete account</a>
         <script src="account.js"></script>
         <link href="styles.css" rel="stylesheet">
     </body>
