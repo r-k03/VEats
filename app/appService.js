@@ -249,7 +249,7 @@ async function filteredOrderTotals(cID, fVal) {
 
 async function getMaxOrder() {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT OrderID,MAX(OrderID) AS MaxID FROM Orders');
+        const result = await connection.execute('SELECT OrderID FROM Orders');
         return result.rows;
     }).catch(() => {
         return [];

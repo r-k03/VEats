@@ -107,7 +107,12 @@ function removeFromCart(item) {
 
     const responseData = await response.json();
     const orderIDs = responseData.data;
-    const newID = (orderIDs.length > 0) ? orderIDs[0][1] + 1 : 1;
+    let newID;
+    if (orderIDs.length <= 0) {newID = '1';}
+    else {
+        let ordersAsInt = orderIDs.map((curr) => parseInt(curr[0])).sort((a, b) => a - b);
+        newID = String(ordersAsInt[ordersAsInt.length - 1] + 1);
+    }
 
     const response2 = await fetch('/menus/randomDriver', {
         method: 'GET'
