@@ -171,3 +171,16 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
+.recommended_button {
+    background-image: linear-gradient(to left, rgb(0, 81, 255) , rgb(0, 170, 255));
+}
+
+.recommendedItem {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px;
+    margin: 10px 0px 10px 0px;
+    padding: 5px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

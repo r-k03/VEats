@@ -96,6 +96,13 @@ router.get('/menu/:address/:customerID', async (req, res) => {
     res.json({data: tableContent});
 });
 
+router.get('/menu/recommended/:address/:customerID', async (req, res) => {
+    const restaurantAddress = req.params.address;
+    const customerID = req.params.customerID;
+    const tableContent = await appService.fetchReccomendations(restaurantAddress, customerID);
+    res.json({data: tableContent});
+});
+
 // router.get('/menus/randomDriver', async (req, res) => {
 //     console.log("0");
 //     const tableContent = await appService.getRandomDriver();

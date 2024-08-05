@@ -210,6 +210,57 @@ async function fetchMenus(restaurantAddress, customerID) {
     });
 }
 
+async function fetchReccomendations(restaurantAddress, customerID) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            SELECT mf.MenuItemName
+            FROM Menu m, Restaurant r, MenuFeaturesItem mf 
+            WHERE r.RestaurantAddress = :restaurantAddress 
+                AND r.RestaurantAddress = m.restaurantaddress 
+                AND mf.MenuName = m.MenuName
+                AND mf.menuItemName NOT IN (
+                    SELECT imw.MenuItemName
+                    FROM HasDietaryPreference hdp, ItemMadeWith imw
+                    WHERE hdp.CustomerID = :customerID 
+                        AND hdp.IngredientName = imw.IngredientName
+                        AND PreferenceType = 'Allergy'
+                )
+		
+            INTERSECT
+	        
+		    SELECT MenuItemName
+           	FROM MenuItem mi
+            WHERE NOT EXISTS (SELECT IngredientName
+                    FROM HasDietaryPreference
+                    WHERE CustomerID = :customerID AND PreferenceType = 'Favourite'
+                    
+                    MINUS  (SELECT IngredientName 
+                    FROM ItemMadeWith imw
+                    WHERE imw.Menuitemname = mi.menuitemname)
+
+            )`, { restaurantAddress, customerID });
+
+            // SELECT MenuItemNames
+            // FROM (SELECT * 
+            //     FROM Menu m, Restaurant r, MenuFeaturesItem mf 
+            //     WHERE r.RestaurantAddress = :restaurantAddress 
+            //         AND r.RestaurantAddress = m.restaurantaddress 
+            //         AND mf.MenuName = m.MenuName
+            //         AND mf.menuItemName NOT IN (
+            //             SELECT imw.MenuItemName
+            //             FROM HasDietaryPreference hdp, ItemMadeWith imw
+            //             WHERE hdp.CustomerID = :customerID 
+            //                 AND hdp.IngredientName = imw.IngredientName
+            //                 AND PreferenceType = 'Allergy'
+            //         )
+            //     ORDER BY m.MenuName)`, 
+            // { restaurantAddress, customerID });
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
 async function fetchOrders(cID) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(`
@@ -312,6 +363,7 @@ module.exports = {
     updateUserPref,
     fetchRestaurantNames,
     fetchMenus,
+    fetchReccomendations,
     fetchOrders,
     fetchOrderTotals,
     filteredOrderTotals,

@@ -1,14 +1,40 @@
 let cart = {};
 let subtotal = 0;
 
+async function fetchAndDisplayRecommendations() {    
+    // alert("clicked!");
+    const custID = sessionStorage.getItem('customerID') || '-1';
+    const recommendations_container = document.getElementById('reccomendations_container');
+
+    const url = `/menu/recommended/${sessionStorage.getItem('currentRestaurant')}/${custID}`;
+    const response = await fetch(url, {
+        method: 'GET'
+    });
+
+    const responseData = await response.json();
+    const menuItems = responseData.data;
+
+    console.log(menuItems); // 
+
+    if (recommendations_container) {
+        recommendations_container.innerHTML = '';
+    }
+
+    menuItems.forEach(item => {        
+        const div = document.createElement('div');
+        div.classList.add("recommendedItem");
+        
+        // div.onclick = () => addToCart(item[7], item[10]); // add an event listener to process menu item click
+        div.innerHTML = `<span>👍🏼 ${item[0]}</span>`;
+        recommendations_container.appendChild(div);
+    });
+}
+
 async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     const restaurantTitle = document.getElementById('restaurant');
     restaurantTitle.textContent = `${restaurantName} - ${restaurantAddress}`;
 
-    // console.log("customer id:")
-    // console.log(sessionStorage.getItem('customerID'));
     const custID = sessionStorage.getItem('customerID') || '-1';
-    // console.log(custID);
 
     const menu_container = document.getElementById('menu_container');
     const checkout_container = document.getElementById('checkout_area');
@@ -21,7 +47,7 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     const responseData = await response.json();
     const menuItems = responseData.data;
 
-    console.log(menuItems); // 
+    // console.log(menuItems); // 
 
     if (menu_container) {
         menu_container.innerHTML = '';
