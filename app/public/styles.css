@@ -171,3 +171,7 @@ header {
     justify-content: space-between;
     align-items: center;
 }
+
+.recommended_button {
+    background-image: linear-gradient(to left, rgb(0, 81, 255) , rgb(0, 170, 255));
+}
