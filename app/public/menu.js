@@ -5,10 +5,15 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     const restaurantTitle = document.getElementById('restaurant');
     restaurantTitle.textContent = `${restaurantName} - ${restaurantAddress}`;
 
+    // console.log("customer id:")
+    // console.log(sessionStorage.getItem('customerID'));
+    const custID = sessionStorage.getItem('customerID') || '-1';
+    // console.log(custID);
+
     const menu_container = document.getElementById('menu_container');
     const checkout_container = document.getElementById('checkout_area');
     
-    const url = `/menus/${restaurantAddress}`;
+    const url = `/menus/${restaurantAddress}/${custID}`;
     const response = await fetch(url, {
         method: 'GET'
     });

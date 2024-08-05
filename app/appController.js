@@ -89,9 +89,10 @@ router.get('/restaurantNames', async (req, res) => {
     res.json({data: tableContent});
 });
 
-router.get('/menus/:address', async (req, res) => {
+router.get('/menus/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
-    const tableContent = await appService.fetchMenus(restaurantAddress);
+    const customerID = req.params.customerID;
+    const tableContent = await appService.fetchMenus(restaurantAddress, customerID);
     res.json({data: tableContent});
 });
 

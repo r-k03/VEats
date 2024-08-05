@@ -179,7 +179,7 @@ async function fetchRestaurantNames() {
 }
 
 // note: doesn't filter out food by customer preference yet
-async function fetchMenus(restaurantAddress) {
+async function fetchMenus(restaurantAddress, customerID) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(`
             SELECT * 
@@ -187,14 +187,20 @@ async function fetchMenus(restaurantAddress) {
             WHERE r.RestaurantAddress = :restaurantAddress 
                 AND r.RestaurantAddress = m.restaurantaddress 
                 AND mf.MenuName = m.MenuName
+		        AND mf.menuItemName NOT IN (
+                    SELECT imw.MenuItemName
+                    FROM HasDietaryPreference hdp, ItemMadeWith imw
+                    WHERE hdp.CustomerID = :customerID AND hdp.IngredientName = imw.IngredientName
+				)
+            ORDER BY m.MenuName`, { restaurantAddress, customerID });
+        /* 
+            SELECT * 
+            FROM Menu m, Restaurant r, MenuFeaturesItem mf 
+            WHERE r.RestaurantAddress = :restaurantAddress 
+                AND r.RestaurantAddress = m.restaurantaddress 
+                AND mf.MenuName = m.MenuName
             ORDER BY m.MenuName`, 
             [restaurantAddress]);
-        /* 
-        'SELECT * 
-        FROM Menu m, Restaurant r, MenuFeaturesItem mf
-        WHERE r.RestaurantAddress = :restaurantAddress 
-            AND r.RestaurantAddress = m.restaurantaddress 
-            AND mf.MenuName = m.MenuName', [restaurantAddress]
         */
         return result.rows;
     }).catch(() => {
