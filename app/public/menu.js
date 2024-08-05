@@ -19,6 +19,15 @@ async function fetchAndDisplayRecommendations() {
     if (recommendations_container) {
         recommendations_container.innerHTML = '';
     }
+
+    menuItems.forEach(item => {        
+        const div = document.createElement('div');
+        div.classList.add("recommendedItem");
+        
+        // div.onclick = () => addToCart(item[7], item[10]); // add an event listener to process menu item click
+        div.innerHTML = `<span>👍🏼 ${item[0]}</span>`;
+        recommendations_container.appendChild(div);
+    });
 }
 
 async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
