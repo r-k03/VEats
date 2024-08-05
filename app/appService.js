@@ -190,7 +190,9 @@ async function fetchMenus(restaurantAddress, customerID) {
 		        AND mf.menuItemName NOT IN (
                     SELECT imw.MenuItemName
                     FROM HasDietaryPreference hdp, ItemMadeWith imw
-                    WHERE hdp.CustomerID = :customerID AND hdp.IngredientName = imw.IngredientName
+                    WHERE hdp.CustomerID = :customerID 
+                        AND hdp.IngredientName = imw.IngredientName
+                        AND PreferenceType = 'Allergy'
 				)
             ORDER BY m.MenuName`, { restaurantAddress, customerID });
         /* 
