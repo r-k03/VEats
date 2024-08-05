@@ -160,3 +160,8 @@ header {
     display: flex;
     
 }
+
+#oList {
+    display: flex;
+    justify-content: space-between;
+}

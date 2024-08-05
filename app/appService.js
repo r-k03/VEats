@@ -203,6 +203,51 @@ async function filteredOrderTotals(cID, fVal) {
     });
 }
 
+async function getMaxOrder() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT OrderID,MAX(OrderID) AS MaxID FROM Orders');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+async function getRandomDriver() {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute('SELECT LicenseNum FROM (SELECT LicenseNum FROM DeliveryPerson ORDER BY DBMS_RANDOM.VALUE) WHERE ROWNUM=1');
+        return result.rows;
+    }).catch(() => {
+        return [];
+    });
+}
+
+async function insertOrder(oID,oDate,cID,lNum,rAdd) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(
+        `INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress)
+            VALUES (:oID, :oDate, :cID, :lNum, :rAdd)`,
+            [oID, oDate, cID, lNum, rAdd],
+            { autoCommit: true }
+        );
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    });
+}
+
+async function insertItem(oID, item) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(
+        `INSERT INTO OrderContains (OrderID, MenuItemName) VALUES (:oID, :item)`,
+        [oID, item],
+        { autoCommit: true }
+        );
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    });
+}
+
 
 
 // EXPORT FUNCTIONS FOR APPCONTROLLER
@@ -214,5 +259,9 @@ module.exports = {
     fetchMenus,
     fetchOrders,
     fetchOrderTotals,
-    filteredOrderTotals
+    filteredOrderTotals,
+    getMaxOrder,
+    getRandomDriver,
+    insertOrder,
+    insertItem
 };

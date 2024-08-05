@@ -64,6 +64,7 @@ async function fetchAndDisplayOrders() {
 async function filteredFetch(event) {
     event.preventDefault();
     const filterVal = parseInt(document.getElementById('oval').value);
+    console.log(filterVal);
     const orderDisplayElement = document.getElementById('oList');
 
         const url = `/orders/${getCustomerID()}/${filterVal}`;

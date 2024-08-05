@@ -36,14 +36,6 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     // const pTotal = document.createElement('p');
     // pTotal.innerText = `Subtotal: ${subtotal}`;
     // checkout_container.appendChild(pTotal);
-
-    // const checkoutButton = document.createElement('button');
-    // checkoutButton.type = 'submit';
-    // checkoutButton.classList.add('checkoutButton');
-    // checkoutButton.textContent = 'Checkout';
-    // checkout_container.appendChild(checkoutButton);
-    // checkoutButton.addEventListener('submit', checkout);
-    
 }
 
 function addToCart(item, price) {
@@ -88,6 +80,7 @@ function displayCart() {
             <div>SUBTOTAL: $${subtotal}</div>
             <button class = "checkoutButton"> CHECKOUT </button>
             `;
+        document.getElementsByClassName("checkoutButton")[0].addEventListener("click",checkout);
 }
 
 function removeFromCart(item) {
@@ -103,12 +96,67 @@ function removeFromCart(item) {
 
 function checkout(event) {
     event.preventDefault();
+    if (Object.keys(cart).length > 0) {
 
+        const url = `/menus/ids`;
+        const response = await fetch(url, {
+            method: 'GET'
+        });
 
+        const responseData = await response.json();
+        const orderIDs = responseData.data;
+        const newID = (orderIDs.length > 0) ? orderIDs[0][1] + 1 : 1;
 
+        const response2 = await fetch('/menus/randDriver', {
+            method: 'GET'
+        });
+
+        const driverData = response2.data;
+        if (driverData.length === 0) {alert("No Driver Can Be Assigned");return;}
+        const randDriver = driverData[0][0];
+
+        const currDate = new Date().toJSON().slice(0,10);
+
+        const response3 = await fetch('/menus/insertOrder', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                id: newID,
+                date: currDate,
+                cID: sessionStorage.getItem("customerID"),
+                license: randDriver,
+                restaurantAddress: sessionStorage.getItem("currentRestaurant")
+            })
+        });
+        if (response3.ok) {
+            for (const currItem of Object.keys(cart)) {
+                const response4 = await fetch('/menus/insertItem', {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: newID,
+                        item: currItem
+                    })
+                });
+                if (!response4.ok) {alert("Order or Item Does Not Exist");return;}
+            }
+        } else {
+            alert("Invalid Customer OR Invalid License OR Invalid Restaurant");
+            return;
+        }
+        subtotal = 0;
+        cart = {};
+        displayCart();
+        return;
+    }
+    alert("Cart Empty");
 }
 
 window.onload = function() {
-    // alert(sessionStorage.getItem('currentRestaurant'));
+    alert(sessionStorage.getItem('currentRestaurant'));
     fetchAndDisplayMenu(sessionStorage.getItem('currentRestaurant'), sessionStorage.getItem('restaurantName'));
 }

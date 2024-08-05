@@ -10,7 +10,7 @@ const path = require('path');
  */
 
 router.post('/login', async (req, res) => {
-    const {id, phone} = req.body 
+    const {id, phone} = req.body;
     const result = await appService.findUser(id, phone);
     if (result.length > 0) {
         res.sendStatus(200);
@@ -20,7 +20,7 @@ router.post('/login', async (req, res) => {
 });
 
 router.post('/register', async (req, res) => {
-    const {id, phone, addr} = req.body 
+    const {id, phone, addr} = req.body;
     const result = await appService.registerUser(id, phone, addr);
     if (result) {
         res.sendStatus(201);
@@ -59,6 +59,36 @@ router.get('/menus/:address', async (req, res) => {
     res.json({data: tableContent});
 });
 
+router.get('/menus/ids', async (req, res) => {
+    const tableContent = await appService.getMaxOrder();
+    res.json({data: tableContent});
+});
+
+router.get('/menus/randDriver', async (req, res) => {
+    const tableContent = await appService.getRandomDriver();
+    res.json({data: tableContent});
+});
+
+router.post('/menus/insertOrder', async (req, res) => {
+    const { id, date, cID, license, restaurantAddress} = req.body;
+    const result = await appService.insertOrder(id, date, cID, license, restaurantAddress);
+    if (result) {
+        res.sendStatus(200);
+    } else {
+    res.sendStatus(409);
+    }
+});
+
+router.post('menus/insertItem', async (req, res) => {
+    const {id, item} = req.body;
+    const result = await appService.insertItem(id, item);
+    if (result) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(409);
+    }
+});
+
 router.get('/orders/:cID', async (req, res) => {
     const customerID = req.params.cID;
     const orderContent = await appService.fetchOrders(customerID);
@@ -71,7 +101,7 @@ router.get('/orders/:cID/:fVal', async (req, res) => {
     const filterVal = req.params.fVal;
     const orderContent = await appService.fetchOrders(customerID);
     const filteredTotals = await appService.filteredOrderTotals(customerID,filterVal);
-    res.json({data: orderContent},{totals:filteredTotals});
+    res.status(200).json({data: orderContent,totals:filteredTotals});
 });
 
 
