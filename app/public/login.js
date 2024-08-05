@@ -8,7 +8,7 @@ async function login() {
     }
 
     
-    const response = await fetch('/login', {
+    const response = await fetch('/loginUser', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ async function register() {
         alert("Missing registration details");
     }
 
-    const response = await fetch('/register', {
+    const response = await fetch('/registerUser', {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'

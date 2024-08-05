@@ -2,9 +2,9 @@
 window.onload = async () => {
     const welcome = document.getElementById("accountWelcome");
     welcome.textContent = "Hello " + sessionStorage.getItem("customerID") + "!"
-    const dietaryPrefs = document.getElementById("dietaryPrefs");
+    const dietaryPrefs = document.getElementById("dietaryPrefsList");
     
-    const response = await fetch(`/${sessionStorage.getItem("customerID")}/dietarypref`, {
+    const response = await fetch(`/dietarypref/${sessionStorage.getItem("customerID")}`, {
         method: 'GET'
     });
 
@@ -24,8 +24,29 @@ window.onload = async () => {
         const prefIngred = document.createElement('div');
         prefIngred.innerText = pref[0];
 
-        const prefType = document.createElement('div');
-        prefType.innerText = pref[1];
+        const prefType = document.createElement('select'); // semantic coupling with options when adding
+        prefType.innerHTML = `
+        <option value="Allergy">Allergy</option>
+        <option value="Favourite">Favourite</option>` // poor practice probably but quick
+        prefType.onchange = () => {
+            fetch(`/dietarypref/${sessionStorage.getItem("customerID")}`, {
+                method: "PUT",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    ingred: pref[0],
+                    pref: prefType.value
+                })
+            }).then((res) => {
+                if (res.ok) {
+                    alert("Ingredient preference successfully updated");
+                } else {
+                    alert("Ingredient unable to be updated, try again")
+                }
+            });
+        }
+        prefType.value = pref[1];
 
         const newPref = document.createElement('li');
         newPref.appendChild(removeButton);
@@ -42,7 +63,7 @@ window.onload = async () => {
 }
 
 function toggleDietary() {
-    const dietaryPrefsDiv = document.getElementById('dietaryPrefs');
+    const dietaryPrefsDiv = document.getElementById('dietaryPrefsDiv');
 
     if (dietaryPrefsDiv.style.display == 'none') {
         dietaryPrefsDiv.style.display = 'block'
@@ -51,11 +72,52 @@ function toggleDietary() {
     }
 }
 
-function deleteAccount() {
+// make sure ingredient exists
+async function submitNewPref() {
+    const ingred = document.getElementById("newIngred").value;
+    const pref = document.getElementById("newPref").value;
+    console.log(ingred, pref);
+
+    if (!pref) {
+        alert("Please select a preference type");
+        return;
+    }
+
+    const response = await fetch(`/dietarypref/${sessionStorage.getItem("customerID")}`, {
+        method: "POST",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            ingred: ingred,
+            pref: pref
+        })
+    });
+
+    
+    if (response.ok) {
+        alert("Ingredient preference added");
+        window.location.reload();
+    } else {
+        alert("Unable to add ingredient preference, try again");
+
+    }
+}
+
+async function deleteUser() {
     if (confirm("Are you sure? (THIS IS AN IRREVERSIBLE ACTION)")) {
-        // todo
-        alert("not implemented yet");
-        window.location.href = "index.html";
-        sessionStorage.setItem("customerID", "");
+        
+        const response = await fetch(`/deleteUser/${sessionStorage.getItem("customerID")}/`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            alert(`Successfully deleted ${sessionStorage.getItem("customerID")}`)
+            window.location.href = '/';
+            sessionStorage.setItem("customerID", "");
+            return;
+        }
+
+        alert("Failed to delete account, try again");
     }
 }

@@ -4,7 +4,7 @@ Ensure Nodejs version is sufficient, check with `node -v`. Install required pack
 
 Edit the `.env` file to fill in appropriate Oracle DB credientials.
 
-Remember to [set up Oracle Instant Client on machine](https://www.students.cs.ubc.ca/~cs-304/resources/javascript-oracle-resources/node-setup.html#:~:text=Deploy%20on%20your,local%20set%20up)) if running on local machine.
+Remember to [set up Oracle Instant Client on machine](https://www.students.cs.ubc.ca/~cs-304/resources/javascript-oracle-resources/node-setup.html#:~:text=Deploy%20on%20your,local%20set%20up) if running on local machine.
 
 
 ## Starting the application

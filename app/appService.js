@@ -103,6 +103,18 @@ async function registerUser(id, phone, addr) {
     });
 }
 
+async function deleteUser(customerID) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            DELETE FROM Customer WHERE CustomerID = :customerID
+        `, [customerID], { autoCommit: true });
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    });
+}
+
+
 async function fetchUserPrefs(customerID) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(`
@@ -113,6 +125,38 @@ async function fetchUserPrefs(customerID) {
         return result.rows;
     }).catch(() => {
         return [];
+    });
+}
+
+async function createUserPref(id, ingred, pref) {
+    return await withOracleDB(async (connection) => {
+
+        result = await connection.execute(`
+            INSERT INTO HasDietaryPreference (CustomerID, IngredientName, PreferenceType)
+                VALUES (:id, :ingred, :pref)`, 
+            [id, ingred, pref],
+            { autoCommit: true }
+        );
+        
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    });
+}
+
+async function updateUserPref(id, ingred, pref) {
+
+    return await withOracleDB(async (connection) => {
+
+        const result = await connection.execute(`
+            UPDATE HasDietaryPreference SET PreferenceType = :pref WHERE CustomerID = :id AND IngredientName = :ingred`,
+            [pref, id, ingred],
+            { autoCommit: true }
+        );
+
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
     });
 }
 
@@ -209,7 +253,10 @@ async function filteredOrderTotals(cID, fVal) {
 module.exports = {
     findUser,
     registerUser,
+    deleteUser,
     fetchUserPrefs,
+    createUserPref,
+    updateUserPref,
     fetchRestaurantNames,
     fetchMenus,
     fetchOrders,
