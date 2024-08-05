@@ -10,6 +10,17 @@
         <form id="filterForm">
             <label for="oval">Orders Greater Than:</label>
             <input type="text" id="oval" inputmode="numeric" pattern="^[1-9]{1}\d*$" maxlength="4" placeholder="1234" autofocus required title="Enter a Valid Integer (Max 4 Digits Long)"/>
+            <fieldset>
+                <legend>Hide Details</legend>
+                <label for="noDate">Order Date</label>
+                <input type="checkbox" id="noDate" value="1" name="removeAttr"/>
+
+                <label for="noItems">Items in Order</label>
+                <input type="checkbox" id="noItems" value="1" name="removeAttr"/>
+
+                <label for="noTotals">Totals</label>
+                <input type="checkbox" id="noTotals" value="1" name="removeAttr"/>
+            </fieldset>
             <input type="submit"/>
         </form>
         <div id="oList"></div>
