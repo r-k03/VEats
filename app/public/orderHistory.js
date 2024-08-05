@@ -63,7 +63,8 @@ async function fetchAndDisplayOrders() {
 
 async function filteredFetch(event) {
     event.preventDefault();
-    const filterVal = parseInt(document.getElementById('oval').value);
+    let filterVal = document.getElementById('oval').value;
+    filterVal = (filterVal === "") ? 0 : parseInt(filterVal);
     console.log(filterVal);
     const orderDisplayElement = document.getElementById('oList');
 
@@ -105,12 +106,15 @@ async function filteredFetch(event) {
                 if (groupedOrders[order].length > 0) {
                 let firstItem = groupedOrders[order][0];
                 html += '<div class="past-orders">' + '<p>' + firstItem[2] + '</p>';
-                html += '<p>' + firstItem[1] + '</p>';
-                html += '<p>Items:</p>';
-                groupedOrders[order].forEach(o => {
-                    html += '<p>' + o[3] + '</p>';
-                });
-                html += `<p> Total: ${groupedTotals[order]}</p></div>`;
+                if (document.getElementById('noDate').checked) {html += '<p>' + firstItem[1] + '</p>';}
+                if (document.getElementById('noItems').checked) {
+                    html += '<p>Items:</p>';
+                    groupedOrders[order].forEach(o => {
+                        html += '<p>' + o[3] + '</p>';
+                    });
+                }
+                if (document.getElementById('noTotals').checked) {html += `<p> Total: ${groupedTotals[order]}</p>`;}
+                html += '</div>';
                 }
             }
             orderDisplayElement.innerHTML = html;
