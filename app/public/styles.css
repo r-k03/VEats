@@ -165,3 +165,9 @@ header {
     display: flex;
     justify-content: space-between;
 }
+
+.recommended_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
