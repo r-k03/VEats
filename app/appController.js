@@ -101,6 +101,7 @@ router.get('/restaurantNames', async (req, res) => {
     res.json({data: tableContent});
 });
 
+// SELECTION QUERY
 router.get('/menu/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
     const customerID = req.params.customerID;
@@ -108,6 +109,7 @@ router.get('/menu/:address/:customerID', async (req, res) => {
     res.json({data: tableContent});
 });
 
+// DIVISION QUERY
 router.get('/menu/recommended/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
     const customerID = req.params.customerID;
