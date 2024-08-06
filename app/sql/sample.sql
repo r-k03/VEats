@@ -72,24 +72,24 @@ INSERT INTO Restaurant (RestaurantAddress, RestaurantName, RestaurantRating, Res
 
 -- Insert statements for Orders table
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (1, TO_DATE('2024-07-15', 'YYYY-MM-DD'), '8', '81685719', '123 Main St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (2, TO_DATE('2024-07-16', 'YYYY-MM-DD'), '4', '01983055', '456 Elm Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (2, TO_DATE('2024-07-16', 'YYYY-MM-DD'), '4', '01983055', '444 Walnut Ct');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (3, TO_DATE('2024-07-17', 'YYYY-MM-DD'), '7', '78276122', '789 Oak Rd');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (4, TO_DATE('2024-07-18', 'YYYY-MM-DD'), '5', '85681253', '101 Maple Ln');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (5, TO_DATE('2024-07-19', 'YYYY-MM-DD'), '6', '29795860', '222 Cherry Blvd');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (6, TO_DATE('2024-07-20', 'YYYY-MM-DD'), '9', '09571867', '333 Pine Dr');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (7, TO_DATE('2024-07-21', 'YYYY-MM-DD'), '1', '99220121', '444 Walnut Ct');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (8, TO_DATE('2024-07-22', 'YYYY-MM-DD'), '6', '69154261', '555 Cedar Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (9, TO_DATE('2024-07-23', 'YYYY-MM-DD'), '1', '83174286', '666 Birch St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (10, TO_DATE('2024-07-24', 'YYYY-MM-DD'), '4', '72761716', '777 Willow Rd');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (9, TO_DATE('2024-07-23', 'YYYY-MM-DD'), '1', '83174286', '123 Main St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (10, TO_DATE('2024-07-24', 'YYYY-MM-DD'), '4', '72761716', '123 Main St');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (11, TO_DATE('2024-07-25', 'YYYY-MM-DD'), '9', '81685719', '123 Main St');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (12, TO_DATE('2024-07-26', 'YYYY-MM-DD'), '6', '01983055', '456 Elm Ave');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (12, TO_DATE('2024-07-26', 'YYYY-MM-DD'), '6', '01983055', '789 Oak Rd');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (13, TO_DATE('2024-07-27', 'YYYY-MM-DD'), '9', '78276122', '789 Oak Rd');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (14, TO_DATE('2024-07-28', 'YYYY-MM-DD'), '7', '85681253', '101 Maple Ln');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (15, TO_DATE('2024-07-29', 'YYYY-MM-DD'), '8', '29795860', '222 Cherry Blvd');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (16, TO_DATE('2024-07-30', 'YYYY-MM-DD'), '2', '09571867', '333 Pine Dr');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (17, TO_DATE('2024-07-31', 'YYYY-MM-DD'), '7', '99220121', '444 Walnut Ct');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (17, TO_DATE('2024-07-31', 'YYYY-MM-DD'), '7', '99220121', '123 Main St');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (18, TO_DATE('2024-08-01', 'YYYY-MM-DD'), '9', '69154261', '555 Cedar Ave');
-INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (19, TO_DATE('2024-08-02', 'YYYY-MM-DD'), '8', '83174286', '666 Birch St');
+INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (19, TO_DATE('2024-08-02', 'YYYY-MM-DD'), '8', '83174286', '123 Main St');
 INSERT INTO Orders (OrderID, OrderDate, CustomerID, LicenseNum, RestaurantAddress) VALUES (20, TO_DATE('2024-08-03', 'YYYY-MM-DD'), '2', '72761716', '777 Willow Rd');
 
 
@@ -218,45 +218,44 @@ INSERT INTO RotationalDrink (MenuItemName, StartDate, EndDate, Volume, AlcoholCo
 INSERT INTO RotationalDrink (MenuItemName, StartDate, EndDate, Volume, AlcoholContent) VALUES ('Holiday Eggnog Delight', TO_DATE('2024-11-01', 'YYYY-MM-DD'), TO_DATE('2024-11-30', 'YYYY-MM-DD'), 250, 0.12);
 
 -- Insert statements for OrderContains table
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('1', 'Cheeseburger');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('1', 'French Fries');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('1', 'Garden Salad');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('1', 'Clam Chowder');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('2', 'Grilled Chicken Salad');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('2', 'Vegetable Stir Fry');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('3', 'Margherita Pizza');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('3', 'Pancakes');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('4', 'Chicken Curry');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('4', 'Fish and Chips');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('5', 'Shrimp Tacos');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('5', 'Garden Salad');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('6', 'BBQ Ribs');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('6', 'Fettuccine Alfredo');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('2', 'Veggie Wrap');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('3', 'Pepperoni Pizza');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('3', 'Sushi Roll');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('4', 'Apple Pie');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('4', 'Chocolate Cake');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('5', 'Cheeseburger');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('5', 'French Fries');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('6', 'Shrimp Tacos');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('6', 'Tacos');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('7', 'Breakfast Burrito');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('7', 'Avocado Toast');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('8', 'Pad Thai');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('9', 'BLT Sandwich');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('9', 'Pepperoni Pizza');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('9', 'Chicken Curry');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('10', 'Chicken Curry');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('10', 'Fish and Chips');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('11', 'Cheeseburger');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('11', 'French Fries');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('12', 'Grilled Chicken Salad');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('12', 'Vegetable Stir Fry');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('13', 'Chocolate Cake');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('13', 'Apple Pie');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('14', 'Margherita Pizza');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('14', 'Pancakes');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('15', 'Shrimp Tacos');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('15', 'Garden Salad');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('16', 'Clam Chowder');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('16', 'Eggplant Parmesan');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('17', 'Beef Steak');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('17', 'Lentil Soup');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('11', 'Pancakes');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('11', 'Eggplant Parmesan');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('12', 'Sushi Roll');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('12', 'Pepperoni Pizza');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('13', 'Pepperoni Pizza');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('13', 'Sushi Roll');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('14', 'Chocolate Cake');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('14', 'Apple Pie');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('15', 'French Fries');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('15', 'Cheeseburger');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('16', 'Tacos');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('16', 'Shrimp Tacos');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('17', 'Avocado Toast');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('17', 'Breakfast Burrito');
 INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('18', 'Chicken Quesadilla');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('18', 'Spaghetti Bolognese');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('19', 'BBQ Ribs');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('19', 'Fettuccine Alfredo');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('20', 'Turkey Sandwich');
-INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('20', 'Cheeseburger');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('19', 'Turkey Sandwich');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('19', 'BLT Sandwich');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('20', 'Eggplant Parmesan');
+INSERT INTO OrderContains (OrderID, MenuItemName) VALUES ('20', 'BBQ Ribs');
 
 -- Insert statements for Ingredient table
 INSERT INTO Ingredient (IngredientName, IngredientType) VALUES ('Ground Beef', 'Meat');
