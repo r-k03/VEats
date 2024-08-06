@@ -6,7 +6,37 @@ function getCustomerID() {
 window.onload = function() {
     fetchAndDisplayOrders();
     document.getElementById('filterForm').addEventListener('submit',filteredFetch);
+
+    loadOrderAverages();
 };
+
+async function loadOrderAverages() {
+
+    const lim = document.getElementById("avgLimit").value;
+
+    const result = await fetch(`/orders/${getCustomerID()}/avgFact`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            lim: lim,
+        })
+    });
+    if (!result.ok) {
+        alert("Error in fetching fun fact, try again");
+        return;
+    }
+    
+    const avg = (await result.json()).data
+
+
+    const orderAvgFactDiv = document.getElementById("orderAvgFact");
+
+    orderAvgFactDiv.innerText = `Fun fact: your per order totals greater than ${lim} average to ${avg}`
+
+
+}
 
 //Fetches Past Orders and Display The Items, Total For Each
 async function fetchAndDisplayOrders() {
@@ -65,13 +95,13 @@ async function filteredFetch(event) {
     event.preventDefault();
     let filterVal = document.getElementById('oval').value;
     filterVal = (filterVal === "") ? 0 : parseInt(filterVal);
-    console.log(filterVal);
+    // console.log(filterVal);
     const orderDisplayElement = document.getElementById('oList');
 
-    const dateBool = !document.getElementById('noDate').checked;
-    const itemBool = !document.getElementById('noItems').checked;
-    const totalsBool = !document.getElementById('noTotals').checked;
-    console.log(dateBool,itemBool,totalsBool);
+    const dateBool = document.getElementById('noDate').checked;
+    const itemBool = document.getElementById('noItems').checked;
+    const totalsBool = document.getElementById('noTotals').checked;
+    // console.log(dateBool,itemBool,totalsBool);
 
         const url = `/orders/${getCustomerID()}/${filterVal}/${dateBool}/${itemBool}`;
         const response = await fetch(url, {

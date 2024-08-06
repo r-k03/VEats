@@ -15,8 +15,22 @@ window.onload = async () => {
         removeButton.onclick = () => {
             if (confirm("Are you sure you want to remove this dietary preference?")) {
                 // todo
-                alert("not implemented yet");
-                window.location.reload();
+                fetch(`/dietarypref/${sessionStorage.getItem("customerID")}`, {
+                    method: "DELETE",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ingred: pref[0]
+                    })
+                }).then((res) => {
+                    if (res.ok) {
+                        alert("Ingredient preference successfully deleted");
+                        window.location.reload();
+                    } else {
+                        alert("Ingredient unable to be deleted, try again")
+                    }
+                });
             }
         }
         removeButton.innerText = 'x'; // very simple hehe

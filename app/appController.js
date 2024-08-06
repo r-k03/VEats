@@ -74,7 +74,7 @@ router.post('/dietarypref/:customerID', async (req, res) => {
 
 router.put('/dietarypref/:customerID', async (req, res) => {
     const customerID = req.params.customerID;
-    const {ingred, pref} = req.body
+    const {ingred, pref} = req.body;
     const result = await appService.updateUserPref(customerID, ingred, pref);
 
     if (result) {
@@ -84,11 +84,24 @@ router.put('/dietarypref/:customerID', async (req, res) => {
     }
 });
 
-router.get('/restaurantNames', async (req, res) => {
-    const tableContent = await appService.fetchRestaurantNames();
+router.delete('/dietarypref/:customerID', async (req, res) => {
+    const customerID = req.params.customerID;
+    const {ingred} = req.body;
+    const result = await appService.deleteUserPref(customerID, ingred);
+
+    if (result) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(410); // probably
+    }
+});
+
+router.get('/restaurants', async (req, res) => {
+    const tableContent = await appService.fetchRestaurants();
     res.json({data: tableContent});
 });
 
+// SELECTION QUERY
 router.get('/menu/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
     const customerID = req.params.customerID;
@@ -96,6 +109,7 @@ router.get('/menu/:address/:customerID', async (req, res) => {
     res.json({data: tableContent});
 });
 
+// DIVISION QUERY
 router.get('/menu/recommended/:address/:customerID', async (req, res) => {
     const restaurantAddress = req.params.address;
     const customerID = req.params.customerID;
@@ -162,6 +176,19 @@ router.get('/orders/:cID', async (req, res) => {
     const orderContent = await appService.fetchOrders(customerID);
     const totalContent = await appService.fetchOrderTotals(customerID);
     res.status(200).json({data: orderContent, totals: totalContent});
+});
+
+router.post('/orders/:cID/avgFact', async (req, res) => {
+    const customerID = req.params.cID;
+    const lim = req.body.lim;
+
+    const result = await appService.fetchOrderAverageFact(customerID, lim);
+
+    if (result != null) {
+        res.status(200).send({data: result});
+    } else {
+        res.sendStatus(500);
+    }
 });
 
 router.get('/orders/:cID/:fVal/:dBool/:iBool', async (req, res) => {

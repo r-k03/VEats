@@ -160,16 +160,21 @@ async function updateUserPref(id, ingred, pref) {
     });
 }
 
-async function fetchRestaurants() {
+async function deleteUserPref(id, ingred) {
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT * FROM Restaurant');
-        return result.rows;
+        const result = await connection.execute(`
+            DELETE FROM HasDietaryPreference WHERE CustomerID = :id AND IngredientName = :ingred`,
+            [id, ingred],
+            { autoCommit: true }
+        );
+
+        return result.rowsAffected && result.rowsAffected > 0;
     }).catch(() => {
-        return [];
+        return false;
     });
 }
 
-async function fetchRestaurantNames() {
+async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
         return result.rows;
@@ -182,12 +187,12 @@ async function fetchRestaurantNames() {
 async function fetchMenus(restaurantAddress, customerID) {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute(`
-            SELECT * 
+            SELECT mf.MenuName, mf.MenuItemName, mf.ItemPrice
             FROM Menu m, Restaurant r, MenuFeaturesItem mf 
             WHERE r.RestaurantAddress = :restaurantAddress 
                 AND r.RestaurantAddress = m.restaurantaddress 
                 AND mf.MenuName = m.MenuName
-		        AND mf.menuItemName NOT IN (
+		        AND mf.MenuItemName NOT IN (
                     SELECT imw.MenuItemName
                     FROM HasDietaryPreference hdp, ItemMadeWith imw
                     WHERE hdp.CustomerID = :customerID 
@@ -195,15 +200,6 @@ async function fetchMenus(restaurantAddress, customerID) {
                         AND PreferenceType = 'Allergy'
 				)
             ORDER BY m.MenuName`, { restaurantAddress, customerID });
-        /* 
-            SELECT * 
-            FROM Menu m, Restaurant r, MenuFeaturesItem mf 
-            WHERE r.RestaurantAddress = :restaurantAddress 
-                AND r.RestaurantAddress = m.restaurantaddress 
-                AND mf.MenuName = m.MenuName
-            ORDER BY m.MenuName`, 
-            [restaurantAddress]);
-        */
         return result.rows;
     }).catch(() => {
         return [];
@@ -269,7 +265,7 @@ async function fetchOrders(cID, dateBool=true, itemsBool=true) {
         if (dateBool) {queryStr += `, o.OrderDate`;}
         queryStr += `, r.RestaurantName`;
         if (itemsBool) {queryStr += `, oc.MenuItemName`;}
-        console.log(queryStr);
+        // console.log(queryStr);
         const result = await connection.execute(
             queryStr +
             ` FROM Orders o, Restaurant r, OrderContains oc
@@ -296,10 +292,37 @@ async function fetchOrderTotals(cID) {
                 AND oc.MenuItemName = mfi.MenuItemName 
             GROUP BY o.OrderID`,
         [cID]);
-        console.log(result);
+
         return result.rows;
     }).catch(() => {
         return [];
+    });
+}
+
+async function fetchOrderAverageFact(cID, lim) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            SELECT AVG(TotalPrice)
+            FROM (
+                SELECT o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice 
+                FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi 
+                WHERE o.CustomerID=:cID 
+                    AND o.RestaurantAddress = r.RestaurantAddress 
+                    AND o.OrderID = oc.OrderID 
+                    AND r.RestaurantAddress = m.RestaurantAddress 
+                    AND m.MenuName = mfi.MenuName 
+                    AND oc.MenuItemName = mfi.MenuItemName 
+                GROUP BY o.OrderID
+            )
+            WHERE TotalPrice > :lim`,
+        [cID, lim]);
+        if (result.rows && result.rows[0][0]) {
+            return result.rows[0][0];
+        } else {
+            return 0;
+        }
+    }).catch(() => {
+        return null; // false doesn't work with 0 since js is so quirky
     });
 }
 
@@ -368,11 +391,13 @@ module.exports = {
     fetchUserPrefs,
     createUserPref,
     updateUserPref,
-    fetchRestaurantNames,
+    deleteUserPref,
+    fetchRestaurants,
     fetchMenus,
     fetchReccomendations,
     fetchOrders,
     fetchOrderTotals,
+    fetchOrderAverageFact,
     filteredOrderTotals,
     getMaxOrder,
     getRandomDriver,
