@@ -96,8 +96,8 @@ router.delete('/dietarypref/:customerID', async (req, res) => {
     }
 });
 
-router.get('/restaurantNames', async (req, res) => {
-    const tableContent = await appService.fetchRestaurantNames();
+router.get('/restaurants', async (req, res) => {
+    const tableContent = await appService.fetchRestaurants();
     res.json({data: tableContent});
 });
 
@@ -176,6 +176,19 @@ router.get('/orders/:cID', async (req, res) => {
     const orderContent = await appService.fetchOrders(customerID);
     const totalContent = await appService.fetchOrderTotals(customerID);
     res.status(200).json({data: orderContent, totals: totalContent});
+});
+
+router.post('/orders/:cID/avgFact', async (req, res) => {
+    const customerID = req.params.cID;
+    const lim = req.body.lim;
+
+    const result = await appService.fetchOrderAverageFact(customerID, lim);
+
+    if (result != null) {
+        res.status(200).send({data: result});
+    } else {
+        res.sendStatus(500);
+    }
 });
 
 router.get('/orders/:cID/:fVal/:dBool/:iBool', async (req, res) => {

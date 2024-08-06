@@ -183,15 +183,6 @@ async function fetchRestaurants() {
     });
 }
 
-async function fetchRestaurantNames() {
-    return await withOracleDB(async (connection) => {
-        const result = await connection.execute('SELECT * FROM Restaurant');
-        return result.rows;
-    }).catch(() => {
-        return [];
-    });
-}
-
 // note: doesn't filter out food by customer preference yet
 async function fetchMenus(restaurantAddress, customerID) {
     return await withOracleDB(async (connection) => {
@@ -274,7 +265,7 @@ async function fetchOrders(cID, dateBool=true, itemsBool=true) {
         if (dateBool) {queryStr += `, o.OrderDate`;}
         queryStr += `, r.RestaurantName`;
         if (itemsBool) {queryStr += `, oc.MenuItemName`;}
-        console.log(queryStr);
+        // console.log(queryStr);
         const result = await connection.execute(
             queryStr +
             ` FROM Orders o, Restaurant r, OrderContains oc
@@ -301,10 +292,37 @@ async function fetchOrderTotals(cID) {
                 AND oc.MenuItemName = mfi.MenuItemName 
             GROUP BY o.OrderID`,
         [cID]);
-        console.log(result);
+
         return result.rows;
     }).catch(() => {
         return [];
+    });
+}
+
+async function fetchOrderAverageFact(cID, lim) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            SELECT AVG(TotalPrice)
+            FROM (
+                SELECT o.OrderID, SUM(mfi.ItemPrice) AS TotalPrice 
+                FROM Orders o, Restaurant r, OrderContains oc, Menu m, MenuFeaturesItem mfi 
+                WHERE o.CustomerID=:cID 
+                    AND o.RestaurantAddress = r.RestaurantAddress 
+                    AND o.OrderID = oc.OrderID 
+                    AND r.RestaurantAddress = m.RestaurantAddress 
+                    AND m.MenuName = mfi.MenuName 
+                    AND oc.MenuItemName = mfi.MenuItemName 
+                GROUP BY o.OrderID
+            )
+            WHERE TotalPrice > :lim`,
+        [cID, lim]);
+        if (result.rows && result.rows[0][0]) {
+            return result.rows[0][0];
+        } else {
+            return 0;
+        }
+    }).catch(() => {
+        return null; // false doesn't work with 0 since js is so quirky
     });
 }
 
@@ -374,11 +392,12 @@ module.exports = {
     createUserPref,
     updateUserPref,
     deleteUserPref,
-    fetchRestaurantNames,
+    fetchRestaurants,
     fetchMenus,
     fetchReccomendations,
     fetchOrders,
     fetchOrderTotals,
+    fetchOrderAverageFact,
     filteredOrderTotals,
     getMaxOrder,
     getRandomDriver,

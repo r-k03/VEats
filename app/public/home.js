@@ -26,7 +26,7 @@ async function fetchAndDisplayUsers() {
 async function fetchAndDisplayRestaurantNames() {
     const listElement = document.getElementById('restaurant_list');
 
-    const response = await fetch('/restaurantNames', {
+    const response = await fetch('/restaurants', {
         method: 'GET'
     });
 
@@ -67,4 +67,8 @@ window.onload = function() {
 
 function fetchTableData() {
     fetchAndDisplayUsers();
+}
+
+function logout() {
+    sessionStorage.setItem("customerID", "");
 }
