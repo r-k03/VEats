@@ -160,6 +160,20 @@ async function updateUserPref(id, ingred, pref) {
     });
 }
 
+async function deleteUserPref(id, ingred) {
+    return await withOracleDB(async (connection) => {
+        const result = await connection.execute(`
+            DELETE FROM HasDietaryPreference WHERE CustomerID = :id AND IngredientName = :ingred`,
+            [id, ingred],
+            { autoCommit: true }
+        );
+
+        return result.rowsAffected && result.rowsAffected > 0;
+    }).catch(() => {
+        return false;
+    });
+}
+
 async function fetchRestaurants() {
     return await withOracleDB(async (connection) => {
         const result = await connection.execute('SELECT * FROM Restaurant');
@@ -368,6 +382,7 @@ module.exports = {
     fetchUserPrefs,
     createUserPref,
     updateUserPref,
+    deleteUserPref,
     fetchRestaurantNames,
     fetchMenus,
     fetchReccomendations,

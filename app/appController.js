@@ -74,13 +74,25 @@ router.post('/dietarypref/:customerID', async (req, res) => {
 
 router.put('/dietarypref/:customerID', async (req, res) => {
     const customerID = req.params.customerID;
-    const {ingred, pref} = req.body
+    const {ingred, pref} = req.body;
     const result = await appService.updateUserPref(customerID, ingred, pref);
 
     if (result) {
         res.sendStatus(200);
     } else {
         res.sendStatus(400);
+    }
+});
+
+router.delete('/dietarypref/:customerID', async (req, res) => {
+    const customerID = req.params.customerID;
+    const {ingred} = req.body;
+    const result = await appService.deleteUserPref(customerID, ingred);
+
+    if (result) {
+        res.sendStatus(200);
+    } else {
+        res.sendStatus(410); // probably
     }
 });
 
