@@ -68,7 +68,12 @@ async function filteredFetch(event) {
     console.log(filterVal);
     const orderDisplayElement = document.getElementById('oList');
 
-        const url = `/orders/${getCustomerID()}/${filterVal}`;
+    const dateBool = !document.getElementById('noDate').checked;
+    const itemBool = !document.getElementById('noItems').checked;
+    const totalsBool = !document.getElementById('noTotals').checked;
+    console.log(dateBool,itemBool,totalsBool);
+
+        const url = `/orders/${getCustomerID()}/${filterVal}/${dateBool}/${itemBool}`;
         const response = await fetch(url, {
             method: 'GET'
         });
@@ -105,15 +110,16 @@ async function filteredFetch(event) {
         for (const order of Object.keys(groupedTotals)) {
                 if (groupedOrders[order].length > 0) {
                 let firstItem = groupedOrders[order][0];
-                html += '<div class="past-orders">' + '<p>' + firstItem[2] + '</p>';
-                if (!document.getElementById('noDate').checked) {html += '<p>' + firstItem[1] + '</p>';}
-                if (!document.getElementById('noItems').checked) {
+                console.log(firstItem);
+                html += (dateBool) ? '<div class="past-orders">' + '<p>' + firstItem[2] + '</p><p>' + firstItem[1] + '</p>' : '<div class="past-orders">' + '<p>' + firstItem[1] + '</p>';
+
+                if (itemBool) {
                     html += '<p>Items:</p>';
                     groupedOrders[order].forEach(o => {
-                        html += '<p>' + o[3] + '</p>';
+                        html += '<p>' + ((dateBool) ? o[3] : o[2]) + '</p>';
                     });
                 }
-                if (!document.getElementById('noTotals').checked) {html += `<p> Total: ${groupedTotals[order]}</p>`;}
+                if (totalsBool) {html += `<p> Total: ${groupedTotals[order]}</p>`;}
                 html += '</div>';
                 }
             }
