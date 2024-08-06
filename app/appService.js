@@ -261,13 +261,20 @@ async function fetchReccomendations(restaurantAddress, customerID) {
     });
 }
 
-async function fetchOrders(cID) {
+async function fetchOrders(cID, dateBool=true, itemsBool=true) {
+    dateBool = (dateBool === 'true' || dateBool === true);
+    itemsBool = (itemsBool === 'true' || itemsBool === true);
     return await withOracleDB(async (connection) => {
-        const result = await connection.execute(`
-            Select o.OrderID, o.OrderDate, r.RestaurantName, oc.MenuItemName 
-            FROM Orders o, Restaurant r, OrderContains oc 
-            WHERE o.CustomerID=:cID 
-                AND o.RestaurantAddress = r.RestaurantAddress 
+        let queryStr = `SELECT o.OrderID`;
+        if (dateBool) {queryStr += `, o.OrderDate`;}
+        queryStr += `, r.RestaurantName`;
+        if (itemsBool) {queryStr += `, oc.MenuItemName`;}
+        console.log(queryStr);
+        const result = await connection.execute(
+            queryStr +
+            ` FROM Orders o, Restaurant r, OrderContains oc
+            WHERE o.CustomerID=:cID
+                AND o.RestaurantAddress = r.RestaurantAddress
                 AND o.OrderID = oc.OrderID`,
         [cID]);
         return result.rows;

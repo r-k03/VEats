@@ -166,10 +166,12 @@ router.get('/orders/:cID', async (req, res) => {
     res.status(200).json({data: orderContent, totals: totalContent});
 });
 
-router.get('/orders/:cID/:fVal', async (req, res) => {
+router.get('/orders/:cID/:fVal/:dBool/:iBool', async (req, res) => {
     const customerID = req.params.cID;
     const filterVal = req.params.fVal;
-    const orderContent = await appService.fetchOrders(customerID);
+    const dateBool = req.params.dBool;
+    const itemsBool = req.params.iBool;
+    const orderContent = await appService.fetchOrders(customerID, dateBool, itemsBool);
     const filteredTotals = await appService.filteredOrderTotals(customerID,filterVal);
     res.status(200).json({data: orderContent,totals:filteredTotals});
 });
