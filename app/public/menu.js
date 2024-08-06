@@ -47,7 +47,7 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
     const responseData = await response.json();
     const menuItems = responseData.data;
 
-    // console.log(menuItems); // 
+    // console.log(menuItems);
 
     if (menu_container) {
         menu_container.innerHTML = '';
@@ -57,8 +57,8 @@ async function fetchAndDisplayMenu(restaurantAddress, restaurantName) {
         const div = document.createElement('div');
         div.classList.add("menuItem");
         
-        div.onclick = () => addToCart(item[7], item[10]); // add an event listener to process menu item click
-        div.innerHTML = `<span>⊕ ${item[0]} -- ${item[7]}</span><span>$${item[10]}</span>`;
+        div.onclick = () => addToCart(item[1], item[2]); // add an event listener to process menu item click
+        div.innerHTML = `<span>⊕ ${item[0]} -- ${item[1]}</span><span>$${item[2]}</span>`;
         menu_container.appendChild(div);
     });
 
@@ -154,59 +154,6 @@ function removeFromCart(item) {
     subtotal = 0;
     cart = {};
     displayCart();
-    return;
-
-    // const responseData = await response.json();
-    // const orderIDs = responseData.data;
-    // const newID = (orderIDs.length > 0) ? orderIDs[0][1] + 1 : 1;
-
-    // // assume it is not actually random driver
-    // const response2 = await fetch('/menus/randomDriver', {
-    //     method: 'GET'
-    // });
-
-    // const response2Data = await response2.json();
-    // const driverData = response2Data.data;
-    // console.log(driverData);
-    // if (driverData.length === 0) {alert("No Driver Can Be Assigned");return;}
-    // const randDriver = driverData[0][0];
-
-    // const currDate = new Date().toJSON().slice(0,10);
-
-    // const response3 = await fetch('/menus/insertOrder', {
-    //     method: "POST",
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify({
-    //         id: newID,
-    //         date: currDate,
-    //         cID: sessionStorage.getItem("customerID"),
-    //         license: randDriver,
-    //         restaurantAddress: sessionStorage.getItem("currentRestaurant")
-    //     })
-    // });
-
-    // if (!response3.ok) {
-    //     alert("Invalid Customer OR Invalid License OR Invalid Restaurant");
-    //     return;
-    // }
-    // for (const currItem of Object.keys(cart)) {
-    //     const response4 = await fetch('/menus/insertItem', {
-    //         method: "POST",
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //         id: newID,
-    //         item: currItem
-    //         })
-    //     });
-    //     if (!response4.ok) {alert("Order or Item Does Not Exist");return;}
-    // }
-    // subtotal = 0;
-    // cart = {};
-    // displayCart();
 }
 
 window.onload = function() {
